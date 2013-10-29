@@ -6,4 +6,4 @@
 //  Copyright (c) 2013 Fei Teng. All rights reserved.
 //
 
-#include "mapper.h"
+#include <Twister-cpp/worker/mapper.h>

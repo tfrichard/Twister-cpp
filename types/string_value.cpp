@@ -6,4 +6,9 @@
 //  Copyright (c) 2013 Fei Teng. All rights reserved.
 //
 
-#include "string_value.h"
+#include <Twister-cpp/types/string_value.h>
+//this non-member function is necessary for every derived key class
+//dynamic linking needs it as hooker
+extern "C" {
+    void* create_string_value_instance() { return new twister::string_value; }
+}

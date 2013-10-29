@@ -21,6 +21,18 @@ namespace twister {
     public:
         string_value() {value_str = "";}
         string_value(const std::string& str) {value_str = str;}
+        
+        void load(in_archive& in_arc) {
+            in_arc >> value_str;
+        }
+        
+        void save(out_archive& out_arc) const {
+            out_arc << value_str;
+        }
+        
+        virtual std::string get_class_name() const {
+            return "string_value";
+        }
     };
 }
 
