@@ -10,14 +10,15 @@
 #define __Twister_cpp__ack_mapper_msg__
 
 #include <iostream>
-#include <set>
+#include <vector>
+#include <algorithm>
 #include <Twister-cpp/message/ack_msg.h>
 
 namespace twister {
     class ack_mapper_msg : public ack_msg {
     public:
         int daemon_no;
-        std::set<int> reduce_inputs;
+        std::vector<int> reduce_inputs;
         
         ack_mapper_msg() {}
         ack_mapper_msg(ACK_TYPE ack_type_, int daemon_no_) : daemon_no(daemon_no_) {
@@ -35,7 +36,7 @@ namespace twister {
             for (int i = 0; i < num_inputs; i++) {
                 int tmp;
                 in_arc >> (int&)tmp;
-                reduce_inputs.insert(tmp);
+                reduce_inputs.push_back(tmp);
             }
         }
         
@@ -50,7 +51,8 @@ namespace twister {
         }
         
         void add_reduce_input(int reduce_no) {
-            reduce_inputs.insert(reduce_no);
+            if (find(reduce_inputs.begin(), reduce_inputs.end(), reduce_no) == reduce_inputs.end())
+                reduce_inputs.push_back(reduce_no);
         }
     };
 }

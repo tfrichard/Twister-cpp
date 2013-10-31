@@ -211,12 +211,18 @@ namespace twister {
             
         } else if (msg_type == REDUCE_INPUT_MSG) {
             reduce_input_msg reduce_input(in_arc);
-            std::cout << "reduce task " << reduce_input.task_no << " is going to request reduce input" << std::endl;
-            reduce_task* reduce_task_ptr = reduce_task_table[reduce_input.task_no];
+            std::vector<int> &reduce_tasks = reduce_input.task_nos;
             
-            reduce_task_ptr->get_reduce_input(reduce_input.reduce_input_daemon_ips);
+            std::cout << "reduce task: " ;
+            for (int i : reduce_tasks) {
+                std::cout << i << " ";
+            }
+            std::cout << " are going to request reduce input in daemon " << this->daemon_id << std::endl;
             
-            //reduce_task_ptr->get_reduce_input_remote(reduce_input.reduce_input_daemon_ips);
+            for (int task_no : reduce_tasks) {
+                reduce_task* reduce_task_ptr = reduce_task_table[task_no];
+                reduce_task_ptr->get_reduce_input(reduce_input.daemon_ip);
+            }
             
             ack_msg ack_reduce_input(ACK_TYPE::REDUCE_INPUT_MSG_ACK);
             out_archive out_ar;
@@ -284,20 +290,25 @@ namespace twister {
                     using boost::asio::ip::tcp;
                     
                     tcp::resolver resovler(io_service);
-                    tcp::socket gather_socket(io_service);
+                    
                     std::string ip = driver_ip;
                     std::string port = std::to_string(10000);
                     tcp::resolver::query query(ip, port);
                     tcp::resolver::iterator endpointer = resovler.resolve(query);
-                    boost::asio::connect(gather_socket, endpointer);
+                    
                     
                     boost::system::error_code error;
                     
                     std::cout << "try to send gather input to client driver: " << daemon_id << std::endl;
                     for (std::map<int, reduce_task*>::iterator it = reduce_task_table.begin(); it != reduce_task_table.end(); it++) {
-                        gather_input &g_input = it->second->collector->gather_input_;
+                        if (it->second->collector->gather_input_.key_value_output.empty()) {
+                            continue;
+                        }
+                        tcp::socket gather_socket(io_service);
+                        boost::asio::connect(gather_socket, endpointer);
+                        
                         out_archive out_ar;
-                        out_ar << g_input;
+                        out_ar << it->second->collector->gather_input_;
                         
                         std::cout << "msg type is " << (MSG_TYPE)out_ar.buf[0] << std::endl;
                         
@@ -308,13 +319,15 @@ namespace twister {
                         boost::asio::write(gather_socket, boost::asio::buffer(out_ar_len.buf, out_ar_len.off), error);
                         if (error) {
                             std::cerr << "send gather input len failed in deamon " << daemon_id << std::endl;
+                            std::cerr << error << std::endl;
                             gather_socket.close();
                             return;
                         }
                         
                         boost::asio::write(gather_socket, boost::asio::buffer(out_ar.buf, out_ar.len), error);
                         if (error) {
-                            std::cerr << "send gather input len failed in deamon " << daemon_id << std::endl;
+                            std::cerr << "send gather input data failed in deamon " << daemon_id << std::endl;
+                            std::cerr << error << std::endl;
                             gather_socket.close();
                             return;
                         }
@@ -329,10 +342,9 @@ namespace twister {
                             gather_socket.close();
                         } else {
                             std::cout << "task no: " << it->second->reducer_conf.reduce_task_no << " successfully send gather input to driver" << std::endl;
-                            gather_socket.close();
                         }
+                         gather_socket.close();
                     }
-                    
                     
                 } catch (std::exception &e) {
                     std::cout << e.what() << std::endl;

@@ -18,18 +18,18 @@
 namespace twister {
     class reduce_input_msg : public message {
     public:
-        int task_no;
-        std::vector<std::string> reduce_input_daemon_ips;
+        std::string daemon_ip;
+        std::vector<int> task_nos;
         
         reduce_input_msg() {
             msg_type = MSG_TYPE::REDUCE_INPUT_MSG;
-            task_no = -1;
+            daemon_ip = "";
         }
         
-        reduce_input_msg(int task_no_, std::vector<std::string> &reduce_input_daemons) {
+        reduce_input_msg(std::string& daemon_ip_, std::vector<int> &task_nos_) {
             msg_type = MSG_TYPE::REDUCE_INPUT_MSG;
-            task_no = task_no_;
-            reduce_input_daemon_ips = reduce_input_daemons;
+            daemon_ip = daemon_ip_;
+            task_nos = task_nos_;
         }
         
         reduce_input_msg(in_archive& in_ar) {
@@ -40,23 +40,23 @@ namespace twister {
         
         void load(in_archive& in_arc) {
             in_arc >> (int&)msg_type;
-            in_arc >> (int&)task_no;
-            int num_of_daemons = 0;
-            in_arc >> (int&)num_of_daemons;
-            for (int i = 0; i < num_of_daemons; i++) {
-                std::string tmp = "";
-                in_arc >> tmp;
-                reduce_input_daemon_ips.push_back(tmp);
+            in_arc >> daemon_ip;
+            int num_of_reducers = 0;
+            in_arc >> (int&)num_of_reducers;
+            for (int i = 0; i < num_of_reducers; i++) {
+                int tmp = 0;
+                in_arc >> (int&)tmp;
+                task_nos.push_back(tmp);
             }
         }
         
         void save(out_archive& out_arc) const {
             out_arc << msg_type;
-            out_arc << task_no;
-            int num_of_daemons = reduce_input_daemon_ips.size();
-            out_arc << num_of_daemons;
-            for (std::vector<std::string>::const_iterator it = reduce_input_daemon_ips.begin();
-                 it != reduce_input_daemon_ips.end(); it++) {
+            out_arc << daemon_ip;
+            int num_of_reducers = task_nos.size();
+            out_arc << num_of_reducers;
+            for (std::vector<int>::const_iterator it = task_nos.begin();
+                 it != task_nos.end(); it++) {
                 out_arc << *it;
             }
         }

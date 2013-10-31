@@ -68,9 +68,7 @@ namespace twister{
         jobconf = job_conf;
         jobstate = job_state::getInstance();
         sync_mgr = new synchronizer(this, jobconf, jobstate);
-        
-        job_conf->num_mappers = 4;
-        job_conf->num_reducers = 1;
+
         std::pair<unsigned int, std::string> item;
         std::vector<std::string> daemon_ips;
         BOOST_FOREACH(item, jobconf->daemon_map) {
@@ -147,24 +145,20 @@ namespace twister{
     }
     
     void driver::config_reduce_inputs() {
-        std::map<int, std::set<int>> &reduce_input_map = conn_mgr->reduce_input_deamon_map;
-        int num_of_reducers = jobconf->num_reducers;
+        std::map<int, std::vector<int>> &reduce_input_map = conn_mgr->reduce_input_deamon_map;
+        int num_of_daemons = conn_mgr->num_of_managed_daemon;
         
-        for (int task_no = 0; task_no < num_of_reducers; task_no++) {
-            if (reduce_input_map.find(task_no) == reduce_input_map.end()) {
-                std::cout << "there's no key hashed to reducer " << task_no << std::endl;
+        for (int daemon_no = 0; daemon_no < num_of_daemons; daemon_no++) {
+            if (reduce_input_map.find(daemon_no) == reduce_input_map.end()) {
+                std::cout << "there's no key hashed to daemon " << daemon_no << std::endl;
                 continue;
             }
-            std::vector<std::string> daemon_ips;
-            for (std::set<int>::iterator it = reduce_input_map[task_no].begin(); it != reduce_input_map[task_no].end(); it++) {
-                daemon_ips.push_back(conn_mgr->daemon_map[*it] + ":" + std::to_string(12500 + task_no % conn_mgr->num_of_managed_daemon));
-            }
             
-            reduce_input_msg reduce_input(task_no, daemon_ips);
-            int daemon_id = task_no % conn_mgr->num_of_managed_daemon;
+            std::string daemon_ip_port = conn_mgr->daemon_map[daemon_no] + ":" + std::to_string(12500 + daemon_no);
+            reduce_input_msg reduce_input(daemon_ip_port, reduce_input_map[daemon_no]);
             //the send_msg should be async here, otherwise all daemons cannot request reduce input in parallel
-            if (!conn_mgr->send_msg(reduce_input, daemon_id)) {
-                std::cerr << "failed to send reduce input " << task_no << " to daemon " << daemon_id << std::endl;
+            if (!conn_mgr->send_msg(reduce_input, daemon_no)) {
+                std::cerr << "failed to send reduce input message  to daemon " << daemon_no << std::endl;
                 exit(-1);
             }
         }
@@ -296,7 +290,7 @@ namespace twister{
                 acceptor.accept(*sock);
                 std::cout << "connection accepted" << std::endl;
                 
-                char* received_data = new char[8192 * 1024];
+                char* received_data = new char[1024];
                 boost::system::error_code ec;
                 //std::size_t len = socket.read_some(boost::asio::buffer(received_data), ec);
                 std::size_t len = boost::asio::read(*sock, boost::asio::buffer(received_data, sizeof(int)), ec);
@@ -308,8 +302,10 @@ namespace twister{
                 in_archive in_ar_len(received_data, len);
                 int msg_size = 0;
                 in_ar_len >> msg_size;
+                delete received_data;
                 
-                memset(received_data, 0, 8192 * 1024);
+                received_data = new char[msg_size + 1];
+                memset(received_data, 0,  msg_size + 1);
                 len = boost::asio::read(*sock, boost::asio::buffer(received_data, msg_size), ec);
                 if (ec) {
                     std::cerr << "driver msg receive error!" << std::endl;

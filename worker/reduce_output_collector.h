@@ -27,7 +27,10 @@ namespace twister {
             task_no = -1;
         }
         
-        reduce_output_collector(int iter, int task_no_) : iteration(iter), task_no(task_no_) {}
+        reduce_output_collector(int iter, int task_no_) : iteration(iter), task_no(task_no_) {
+            gather_input_.task_no = task_no;
+            gather_input_.iteration = iteration;
+        }
         
         void collect(const key* key_, const value* value_) {
             //container[key_] = value_;

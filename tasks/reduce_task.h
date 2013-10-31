@@ -43,12 +43,12 @@ namespace twister {
         
         void run_reduce_function();
         
-        void get_reduce_input(std::vector<std::string>&);
+        void get_reduce_input(std::string);
         
         void foo(std::vector<std::string>&);
         
         ~reduce_task() {
-            delete reduce_instance;
+            //delete reduce_instance;
         }
     };
 }

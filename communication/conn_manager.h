@@ -35,8 +35,8 @@ namespace twister {
         int num_of_managed_daemon;
         std::vector<daemon*> active_daemons;
         std::map<int, std::string> daemon_map;
-        //<reduce_no, deamon_list>
-        std::map<int, std::set<int> > reduce_input_deamon_map;
+        //<deamon_no, list of reduce task no>
+        std::map<int, std::vector<int>> reduce_input_deamon_map;
     
     private:
         inline bool is_spawn_from_env() {

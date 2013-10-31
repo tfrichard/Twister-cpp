@@ -30,7 +30,7 @@ public:
             
             wc_map[word] = cnt;
             
-            std::cout << "final count of word: " << word << " is " << cnt << std::endl;
+            //std::cout << "final count of word: " << word << " is " << cnt << std::endl;
         }
     }
     

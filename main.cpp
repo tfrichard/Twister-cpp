@@ -53,11 +53,13 @@ void gen_words() {
     files.push_back("/tmp/delta/wc_1");
     files.push_back("/tmp/delta/wc_2");
     files.push_back("/tmp/delta/wc_3");
+    files.push_back("/tmp/delta/wc_4");
+    files.push_back("/tmp/delta/wc_5");
     //files.push_back("/tmp/delta/wc_4");
     
     for (std::string& file : files) {
         out_file.open(file.c_str());
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 50000; i++) {
             std::string str = random_string(rand() % 10) + " ";
             out_file << str;
         }
@@ -68,6 +70,7 @@ void gen_words() {
 
 int main(int argc, char **argv)
 {
+    gen_words();
     //"word count + uuid is the job name"
     twister::job_config* job_conf = twister::job_config::getInstance("word_count_" + boost::lexical_cast<std::string>(boost::uuids::random_generator()()));
     
@@ -77,6 +80,8 @@ int main(int argc, char **argv)
     job_conf->reducer_name = "word_count_reducer";
     job_conf->gather_name = "word_count_gather";
     job_conf->udf_dy_lib = "libapp_test_dl.dylib";
+    job_conf->num_mappers = 4;
+    job_conf->num_reducers = 4;
     
     twister::driver td(job_conf);
     
