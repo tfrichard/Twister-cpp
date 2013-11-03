@@ -1,0 +1,2 @@
+/usr/bin/ar cr libtwistercpp.a  CMakeFiles/twistercpp.dir/client/driver.cpp.o CMakeFiles/twistercpp.dir/client/synchronizer.cpp.o
+/usr/bin/ranlib libtwistercpp.a

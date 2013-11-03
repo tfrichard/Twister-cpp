@@ -1,0 +1,126 @@
+/N/u/feiteng/software/cmake/bin/cmake -H/N/u/feiteng/projs/twistercpp -B/N/u/feiteng/projs/twistercpp/build --check-build-system CMakeFiles/Makefile.cmake 0
+/N/u/feiteng/software/cmake/bin/cmake -E cmake_progress_start /N/u/feiteng/projs/twistercpp/build/CMakeFiles /N/u/feiteng/projs/twistercpp/build/CMakeFiles/progress.marks
+make -f CMakeFiles/Makefile2 all
+make[1]: Entering directory `/N/u/feiteng/projs/twistercpp/build'
+make -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/depend
+make[2]: Entering directory `/N/u/feiteng/projs/twistercpp/build'
+cd /N/u/feiteng/projs/twistercpp/build && /N/u/feiteng/software/cmake/bin/cmake -E cmake_depends "Unix Makefiles" /N/u/feiteng/projs/twistercpp /N/u/feiteng/projs/twistercpp/Twister-cpp /N/u/feiteng/projs/twistercpp/build /N/u/feiteng/projs/twistercpp/build/Twister-cpp /N/u/feiteng/projs/twistercpp/build/Twister-cpp/CMakeFiles/twistercpp.dir/DependInfo.cmake --color=
+Scanning dependencies of target twistercpp
+make[2]: Leaving directory `/N/u/feiteng/projs/twistercpp/build'
+make -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/build
+make[2]: Entering directory `/N/u/feiteng/projs/twistercpp/build'
+/N/u/feiteng/software/cmake/bin/cmake -E cmake_progress_report /N/u/feiteng/projs/twistercpp/build/CMakeFiles 1
+[ 50%] Building CXX object Twister-cpp/CMakeFiles/twistercpp.dir/client/driver.cpp.o
+cd /N/u/feiteng/projs/twistercpp/build/Twister-cpp && /usr/bin/c++    -O0 -Wno-attributes -march=x86-64 -Wall -g -std=c++0x -Wno-conversion-null -I/N/u/feiteng/projs/twistercpp/build -I/N/u/feiteng/projs/twistercpp -I"/N/u/feiteng/projs/twistercpp/>" -I/N/u/feiteng/dev/include    -o CMakeFiles/twistercpp.dir/client/driver.cpp.o -c /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.h:14,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:9:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/log/log.h:12:28: error: log4cxx/logger.h: No such file or directory
+/N/u/feiteng/projs/twistercpp/Twister-cpp/log/log.h:13:39: error: log4cxx/basicconfigurator.h: No such file or directory
+/N/u/feiteng/projs/twistercpp/Twister-cpp/log/log.h:14:42: error: log4cxx/propertyconfigurator.h: No such file or directory
+/N/u/feiteng/projs/twistercpp/Twister-cpp/log/log.h:15:39: error: log4cxx/helpers/exception.h: No such file or directory
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.h:16,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:9:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:13:18: error: atomic: No such file or directory
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/message/message.h:14,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_config.h:17,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.h:15,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:9:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/serialization/in_archive.h: In member function ‘void twister::in_archive::read(char*, int)’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/serialization/in_archive.h:41: error: ‘memcpy’ was not declared in this scope
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/message/message.h:15,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_config.h:17,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.h:15,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:9:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/serialization/out_archive.h: In member function ‘void twister::out_archive::write(const char*, int)’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/serialization/out_archive.h:44: error: ‘memcpy’ was not declared in this scope
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.h:15,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:9:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_config.h: At global scope:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_config.h:25: warning: declaration ‘struct boost::uuids::uuid’ does not declare anything
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.h:16,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:9:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:36: error: ISO C++ forbids declaration of ‘atomic’ with no type
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:36: error: invalid use of ‘::’
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:36: error: expected ‘;’ before ‘<’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:37: error: ISO C++ forbids declaration of ‘atomic’ with no type
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:37: error: invalid use of ‘::’
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:37: error: expected ‘;’ before ‘<’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h: In constructor ‘twister::job_state::job_state()’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:28: error: ‘num_of_successful_map_tasks’ was not declared in this scope
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:29: error: ‘job_running_state’ was not declared in this scope
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h: In static member function ‘static void twister::job_state::set_job_running_state(twister::job_exec_state)’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/config/job_state.h:41: error: ‘job_running_state’ was not declared in this scope
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/worker/map_output_collector.h:17,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/worker/mapper.h:12,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/tasks/map_task.h:14,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/worker/daemon.h:21,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/communication/conn_manager.h:18,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.h:17,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:9:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/types/reduce_input.h: In member function ‘virtual void twister::reduce_input::save(twister::out_archive&) const’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/types/reduce_input.h:99: warning: comparison between signed and unsigned integer expressions
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/communication/conn_manager.h:18,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.h:17,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:9:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/worker/daemon.h: At global scope:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/worker/daemon.h:35: error: ‘atomic_flag’ in namespace ‘std’ does not name a type
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.h:18,
+                 from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:9:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/synchronizer.h:33: error: ISO C++ forbids declaration of ‘atomic’ with no type
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/synchronizer.h:33: error: invalid use of ‘::’
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/synchronizer.h:33: error: expected ‘;’ before ‘<’ token
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:19:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_request_grp_msg.h: In member function ‘virtual void twister::map_request_grp_msg::save(twister::out_archive&) const’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_request_grp_msg.h:43: error: expected initializer before ‘:’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_request_grp_msg.h:46: error: expected primary-expression before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_request_grp_msg.h:46: error: expected ‘;’ before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_request_grp_msg.h:46: error: expected primary-expression before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_request_grp_msg.h:46: error: expected ‘)’ before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_request_grp_msg.h:46: error: expected primary-expression before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_request_grp_msg.h:46: error: expected ‘;’ before ‘}’ token
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:20:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_start_grp_msg.h: In member function ‘virtual void twister::map_start_grp_msg::save(twister::out_archive&) const’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_start_grp_msg.h:43: error: expected initializer before ‘:’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_start_grp_msg.h:46: error: expected primary-expression before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_start_grp_msg.h:46: error: expected ‘;’ before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_start_grp_msg.h:46: error: expected primary-expression before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_start_grp_msg.h:46: error: expected ‘)’ before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_start_grp_msg.h:46: error: expected primary-expression before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/map_start_grp_msg.h:46: error: expected ‘;’ before ‘}’ token
+In file included from /N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:21:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/reduce_request_grp_msg.h: In member function ‘virtual void twister::reduce_request_grp_msg::save(twister::out_archive&) const’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/reduce_request_grp_msg.h:42: error: expected initializer before ‘:’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/reduce_request_grp_msg.h:45: error: expected primary-expression before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/reduce_request_grp_msg.h:45: error: expected ‘;’ before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/reduce_request_grp_msg.h:45: error: expected primary-expression before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/reduce_request_grp_msg.h:45: error: expected ‘)’ before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/reduce_request_grp_msg.h:45: error: expected primary-expression before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/message/reduce_request_grp_msg.h:45: error: expected ‘;’ before ‘}’ token
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp: In member function ‘void twister::driver::config_reduce_inputs()’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:157: error: call of overloaded ‘to_string(int)’ is ambiguous
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h:2604: note: candidates are: std::string std::to_string(long long int)
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h:2610: note:                 std::string std::to_string(long long unsigned int)
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h:2616: note:                 std::string std::to_string(long double)
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp: In member function ‘bool twister::driver::is_mapreduce_completed()’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:210: error: ‘class twister::job_state’ has no member named ‘job_running_state’
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp: In member function ‘void twister::driver::start_map(twister::value*)’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:219: error: call of overloaded ‘to_string(int&)’ is ambiguous
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h:2604: note: candidates are: std::string std::to_string(long long int)
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h:2610: note:                 std::string std::to_string(long long unsigned int)
+/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/bits/basic_string.h:2616: note:                 std::string std::to_string(long double)
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp: In member function ‘void twister::driver::on_event()’:
+/N/u/feiteng/projs/twistercpp/Twister-cpp/client/driver.cpp:314: warning: comparison between signed and unsigned integer expressions
+/N/u/feiteng/dev/include/boost/system/error_code.hpp: At global scope:
+/N/u/feiteng/dev/include/boost/system/error_code.hpp:222: warning: ‘boost::system::posix_category’ defined but not used
+/N/u/feiteng/dev/include/boost/system/error_code.hpp:223: warning: ‘boost::system::errno_ecat’ defined but not used
+/N/u/feiteng/dev/include/boost/system/error_code.hpp:224: warning: ‘boost::system::native_ecat’ defined but not used
+/N/u/feiteng/dev/include/boost/asio/error.hpp:244: warning: ‘boost::asio::error::system_category’ defined but not used
+/N/u/feiteng/dev/include/boost/asio/error.hpp:246: warning: ‘boost::asio::error::netdb_category’ defined but not used
+/N/u/feiteng/dev/include/boost/asio/error.hpp:248: warning: ‘boost::asio::error::addrinfo_category’ defined but not used
+/N/u/feiteng/dev/include/boost/asio/error.hpp:250: warning: ‘boost::asio::error::misc_category’ defined but not used
+cc1plus: warning: unrecognized command line option "-Wno-conversion-null"
+make[2]: *** [Twister-cpp/CMakeFiles/twistercpp.dir/client/driver.cpp.o] Error 1
+make[2]: Leaving directory `/N/u/feiteng/projs/twistercpp/build'
+make[1]: *** [Twister-cpp/CMakeFiles/twistercpp.dir/all] Error 2
+make[1]: Leaving directory `/N/u/feiteng/projs/twistercpp/build'
+make: *** [all] Error 2
