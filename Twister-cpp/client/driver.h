@@ -11,7 +11,7 @@
 
 #include <iostream>
 
-#include <Twister-cpp/log/log.h>
+//#include <Twister-cpp/log/log.h>
 #include <Twister-cpp/config/job_config.h>
 #include <Twister-cpp/config/job_state.h>
 #include <Twister-cpp/communication/conn_manager.h>

@@ -5,7 +5,7 @@
 //  Created by Fei Teng on 9/23/13.
 //  Copyright (c) 2013 Fei Teng. All rights reserved.
 //
-
+#include <unistd.h>
 #include <thread>
 
 #include <Twister-cpp/client/synchronizer.h>
@@ -32,7 +32,9 @@ namespace twister {
         
         while (!driver_ptr->is_mapreduce_completed()) {
             //sleep time consistent with Twister java
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			//gcc version lower than 4.8 does not support sleep_for
+            //std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			usleep(100 * 1000);
             
             sync_job_running();
         }

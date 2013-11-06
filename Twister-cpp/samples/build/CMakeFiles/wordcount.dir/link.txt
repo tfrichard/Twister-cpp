@@ -1,0 +1,1 @@
+/usr/lib64/ccache/c++  -fPIC -O0 -Wno-attributes -march=x86-64 -Wall -g -std=c++11 -Wno-conversion-null   -shared -Wl,-soname,libwordcount.so -o libwordcount.so CMakeFiles/wordcount.dir/word_count_gather.cpp.o CMakeFiles/wordcount.dir/word_count_mapper.cpp.o CMakeFiles/wordcount.dir/word_count_reducer.cpp.o  -L/ccs/home/feiteng/boost/lib  -L/ccs/home/feiteng/twistercpp/lib 

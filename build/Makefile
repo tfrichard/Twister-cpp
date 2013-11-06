@@ -33,37 +33,81 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /N/u/feiteng/software/cmake/bin/cmake
+CMAKE_COMMAND = /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake
 
 # The command to remove a file.
-RM = /N/u/feiteng/software/cmake/bin/cmake -E remove -f
+RM = /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /N/u/feiteng/projs/twistercpp
+CMAKE_SOURCE_DIR = /ccs/home/feiteng/twistercpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /N/u/feiteng/projs/twistercpp/build
+CMAKE_BINARY_DIR = /ccs/home/feiteng/twistercpp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/N/u/feiteng/software/cmake/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+.PHONY : install/strip/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/N/u/feiteng/software/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -72,9 +116,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /N/u/feiteng/projs/twistercpp/build/CMakeFiles /N/u/feiteng/projs/twistercpp/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles /ccs/home/feiteng/twistercpp/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /N/u/feiteng/projs/twistercpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -102,6 +146,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named twister_daemon
+
+# Build rule for target.
+twister_daemon: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 twister_daemon
+.PHONY : twister_daemon
+
+# fast build rule for target.
+twister_daemon/fast:
+	$(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/build
+.PHONY : twister_daemon/fast
+
+#=============================================================================
+# Target rules for targets named twister_types
+
+# Build rule for target.
+twister_types: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 twister_types
+.PHONY : twister_types
+
+# fast build rule for target.
+twister_types/fast:
+	$(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/build
+.PHONY : twister_types/fast
+
+#=============================================================================
 # Target rules for targets named twistercpp
 
 # Build rule for target.
@@ -121,7 +191,13 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... twister_daemon"
+	@echo "... twister_types"
 	@echo "... twistercpp"
 .PHONY : help
 

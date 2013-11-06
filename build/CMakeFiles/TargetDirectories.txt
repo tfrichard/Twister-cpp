@@ -1,1 +1,3 @@
-/N/u/feiteng/projs/twistercpp/build/Twister-cpp/CMakeFiles/twistercpp.dir
+/ccs/home/feiteng/twistercpp/build/Twister-cpp/CMakeFiles/twister_daemon.dir
+/ccs/home/feiteng/twistercpp/build/Twister-cpp/CMakeFiles/twister_types.dir
+/ccs/home/feiteng/twistercpp/build/Twister-cpp/CMakeFiles/twistercpp.dir

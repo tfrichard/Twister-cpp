@@ -1,0 +1,3 @@
+/ccs/home/feiteng/twistercpp/lib/libtwistercpp.a
+/ccs/home/feiteng/twistercpp/lib/libtwister_types.so
+/ccs/home/feiteng/twistercpp/bin/twister_daemon

@@ -41,36 +41,137 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /N/u/feiteng/software/cmake/bin/cmake
+CMAKE_COMMAND = /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake
 
 # The command to remove a file.
-RM = /N/u/feiteng/software/cmake/bin/cmake -E remove -f
+RM = /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /N/u/feiteng/projs/twistercpp
+CMAKE_SOURCE_DIR = /ccs/home/feiteng/twistercpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /N/u/feiteng/projs/twistercpp/build
+CMAKE_BINARY_DIR = /ccs/home/feiteng/twistercpp/build
 
 #=============================================================================
 # Directory level rules for directory Twister-cpp
 
 # Convenience name for "all" pass in the directory.
+Twister-cpp/all: Twister-cpp/CMakeFiles/twister_daemon.dir/all
+Twister-cpp/all: Twister-cpp/CMakeFiles/twister_types.dir/all
 Twister-cpp/all: Twister-cpp/CMakeFiles/twistercpp.dir/all
 Twister-cpp/all: Twister-cpp/client/all
+Twister-cpp/all: Twister-cpp/message/all
+Twister-cpp/all: Twister-cpp/serialization/all
+Twister-cpp/all: Twister-cpp/utility/all
+Twister-cpp/all: Twister-cpp/worker/all
+Twister-cpp/all: Twister-cpp/tasks/all
+Twister-cpp/all: Twister-cpp/types/all
+Twister-cpp/all: Twister-cpp/communication/all
+Twister-cpp/all: Twister-cpp/config/all
 .PHONY : Twister-cpp/all
 
 # Convenience name for "clean" pass in the directory.
+Twister-cpp/clean: Twister-cpp/CMakeFiles/twister_daemon.dir/clean
+Twister-cpp/clean: Twister-cpp/CMakeFiles/twister_types.dir/clean
 Twister-cpp/clean: Twister-cpp/CMakeFiles/twistercpp.dir/clean
 Twister-cpp/clean: Twister-cpp/client/clean
+Twister-cpp/clean: Twister-cpp/message/clean
+Twister-cpp/clean: Twister-cpp/serialization/clean
+Twister-cpp/clean: Twister-cpp/utility/clean
+Twister-cpp/clean: Twister-cpp/worker/clean
+Twister-cpp/clean: Twister-cpp/tasks/clean
+Twister-cpp/clean: Twister-cpp/types/clean
+Twister-cpp/clean: Twister-cpp/communication/clean
+Twister-cpp/clean: Twister-cpp/config/clean
 .PHONY : Twister-cpp/clean
 
 # Convenience name for "preinstall" pass in the directory.
 Twister-cpp/preinstall: Twister-cpp/client/preinstall
+Twister-cpp/preinstall: Twister-cpp/message/preinstall
+Twister-cpp/preinstall: Twister-cpp/serialization/preinstall
+Twister-cpp/preinstall: Twister-cpp/utility/preinstall
+Twister-cpp/preinstall: Twister-cpp/worker/preinstall
+Twister-cpp/preinstall: Twister-cpp/tasks/preinstall
+Twister-cpp/preinstall: Twister-cpp/types/preinstall
+Twister-cpp/preinstall: Twister-cpp/communication/preinstall
+Twister-cpp/preinstall: Twister-cpp/config/preinstall
 .PHONY : Twister-cpp/preinstall
+
+#=============================================================================
+# Target rules for target Twister-cpp/CMakeFiles/twister_daemon.dir
+
+# All Build rule for target.
+Twister-cpp/CMakeFiles/twister_daemon.dir/all:
+	$(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/depend
+	$(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /ccs/home/feiteng/twistercpp/build/CMakeFiles  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43
+	@echo "Built target twister_daemon"
+.PHONY : Twister-cpp/CMakeFiles/twister_daemon.dir/all
+
+# Include target in all.
+all: Twister-cpp/CMakeFiles/twister_daemon.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+Twister-cpp/CMakeFiles/twister_daemon.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles 43
+	$(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/CMakeFiles/twister_daemon.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles 0
+.PHONY : Twister-cpp/CMakeFiles/twister_daemon.dir/rule
+
+# Convenience name for target.
+twister_daemon: Twister-cpp/CMakeFiles/twister_daemon.dir/rule
+.PHONY : twister_daemon
+
+# clean rule for target.
+Twister-cpp/CMakeFiles/twister_daemon.dir/clean:
+	$(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/clean
+.PHONY : Twister-cpp/CMakeFiles/twister_daemon.dir/clean
+
+# clean rule for target.
+clean: Twister-cpp/CMakeFiles/twister_daemon.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target Twister-cpp/CMakeFiles/twister_types.dir
+
+# All Build rule for target.
+Twister-cpp/CMakeFiles/twister_types.dir/all:
+	$(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/depend
+	$(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /ccs/home/feiteng/twistercpp/build/CMakeFiles  44 45 46 47 48 49 50
+	@echo "Built target twister_types"
+.PHONY : Twister-cpp/CMakeFiles/twister_types.dir/all
+
+# Include target in all.
+all: Twister-cpp/CMakeFiles/twister_types.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+Twister-cpp/CMakeFiles/twister_types.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles 7
+	$(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/CMakeFiles/twister_types.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles 0
+.PHONY : Twister-cpp/CMakeFiles/twister_types.dir/rule
+
+# Convenience name for target.
+twister_types: Twister-cpp/CMakeFiles/twister_types.dir/rule
+.PHONY : twister_types
+
+# clean rule for target.
+Twister-cpp/CMakeFiles/twister_types.dir/clean:
+	$(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/clean
+.PHONY : Twister-cpp/CMakeFiles/twister_types.dir/clean
+
+# clean rule for target.
+clean: Twister-cpp/CMakeFiles/twister_types.dir/clean
+.PHONY : clean
 
 #=============================================================================
 # Target rules for target Twister-cpp/CMakeFiles/twistercpp.dir
@@ -79,7 +180,7 @@ Twister-cpp/preinstall: Twister-cpp/client/preinstall
 Twister-cpp/CMakeFiles/twistercpp.dir/all:
 	$(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/depend
 	$(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /N/u/feiteng/projs/twistercpp/build/CMakeFiles  1 2
+	$(CMAKE_COMMAND) -E cmake_progress_report /ccs/home/feiteng/twistercpp/build/CMakeFiles  51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92
 	@echo "Built target twistercpp"
 .PHONY : Twister-cpp/CMakeFiles/twistercpp.dir/all
 
@@ -89,9 +190,9 @@ all: Twister-cpp/CMakeFiles/twistercpp.dir/all
 
 # Build rule for subdir invocation for target.
 Twister-cpp/CMakeFiles/twistercpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /N/u/feiteng/projs/twistercpp/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles 42
 	$(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/CMakeFiles/twistercpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /N/u/feiteng/projs/twistercpp/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles 0
 .PHONY : Twister-cpp/CMakeFiles/twistercpp.dir/rule
 
 # Convenience name for target.
@@ -121,6 +222,126 @@ Twister-cpp/client/clean:
 # Convenience name for "preinstall" pass in the directory.
 Twister-cpp/client/preinstall:
 .PHONY : Twister-cpp/client/preinstall
+
+#=============================================================================
+# Directory level rules for directory Twister-cpp/message
+
+# Convenience name for "all" pass in the directory.
+Twister-cpp/message/all:
+.PHONY : Twister-cpp/message/all
+
+# Convenience name for "clean" pass in the directory.
+Twister-cpp/message/clean:
+.PHONY : Twister-cpp/message/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Twister-cpp/message/preinstall:
+.PHONY : Twister-cpp/message/preinstall
+
+#=============================================================================
+# Directory level rules for directory Twister-cpp/serialization
+
+# Convenience name for "all" pass in the directory.
+Twister-cpp/serialization/all:
+.PHONY : Twister-cpp/serialization/all
+
+# Convenience name for "clean" pass in the directory.
+Twister-cpp/serialization/clean:
+.PHONY : Twister-cpp/serialization/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Twister-cpp/serialization/preinstall:
+.PHONY : Twister-cpp/serialization/preinstall
+
+#=============================================================================
+# Directory level rules for directory Twister-cpp/utility
+
+# Convenience name for "all" pass in the directory.
+Twister-cpp/utility/all:
+.PHONY : Twister-cpp/utility/all
+
+# Convenience name for "clean" pass in the directory.
+Twister-cpp/utility/clean:
+.PHONY : Twister-cpp/utility/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Twister-cpp/utility/preinstall:
+.PHONY : Twister-cpp/utility/preinstall
+
+#=============================================================================
+# Directory level rules for directory Twister-cpp/worker
+
+# Convenience name for "all" pass in the directory.
+Twister-cpp/worker/all:
+.PHONY : Twister-cpp/worker/all
+
+# Convenience name for "clean" pass in the directory.
+Twister-cpp/worker/clean:
+.PHONY : Twister-cpp/worker/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Twister-cpp/worker/preinstall:
+.PHONY : Twister-cpp/worker/preinstall
+
+#=============================================================================
+# Directory level rules for directory Twister-cpp/tasks
+
+# Convenience name for "all" pass in the directory.
+Twister-cpp/tasks/all:
+.PHONY : Twister-cpp/tasks/all
+
+# Convenience name for "clean" pass in the directory.
+Twister-cpp/tasks/clean:
+.PHONY : Twister-cpp/tasks/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Twister-cpp/tasks/preinstall:
+.PHONY : Twister-cpp/tasks/preinstall
+
+#=============================================================================
+# Directory level rules for directory Twister-cpp/types
+
+# Convenience name for "all" pass in the directory.
+Twister-cpp/types/all:
+.PHONY : Twister-cpp/types/all
+
+# Convenience name for "clean" pass in the directory.
+Twister-cpp/types/clean:
+.PHONY : Twister-cpp/types/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Twister-cpp/types/preinstall:
+.PHONY : Twister-cpp/types/preinstall
+
+#=============================================================================
+# Directory level rules for directory Twister-cpp/communication
+
+# Convenience name for "all" pass in the directory.
+Twister-cpp/communication/all:
+.PHONY : Twister-cpp/communication/all
+
+# Convenience name for "clean" pass in the directory.
+Twister-cpp/communication/clean:
+.PHONY : Twister-cpp/communication/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Twister-cpp/communication/preinstall:
+.PHONY : Twister-cpp/communication/preinstall
+
+#=============================================================================
+# Directory level rules for directory Twister-cpp/config
+
+# Convenience name for "all" pass in the directory.
+Twister-cpp/config/all:
+.PHONY : Twister-cpp/config/all
+
+# Convenience name for "clean" pass in the directory.
+Twister-cpp/config/clean:
+.PHONY : Twister-cpp/config/clean
+
+# Convenience name for "preinstall" pass in the directory.
+Twister-cpp/config/preinstall:
+.PHONY : Twister-cpp/config/preinstall
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -12,7 +12,6 @@
 
 #include <Twister-cpp/config/job_config.h>
 #include <cstdlib>
-#include <malloc/malloc.h>
 
 namespace twister {
     //log4cxx::LoggerPtr job_config::logger = log::get_logger("job_config");

@@ -95,7 +95,7 @@ namespace twister {
             in_archive in_arc_data(buf, len);
             
             reduce_input input(in_arc_data);
-            reduce_input_ = input;
+            reduce_input_.merge_reduce_input(input);
             
             delete buf;
             

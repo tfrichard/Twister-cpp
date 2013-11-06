@@ -13,7 +13,6 @@
 #include <string>
 #include <vector>
 #include <map>
-#include <Twister-cpp/log/log.h>
 #include <Twister-cpp/message/message.h>
 #include <Twister-cpp/serialization/in_archive.h>
 #include <Twister-cpp/serialization/out_archive.h>

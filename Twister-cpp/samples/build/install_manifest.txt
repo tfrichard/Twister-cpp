@@ -1,0 +1,2 @@
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/lib/libwordcount.so
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/bin/tcc_wordcount

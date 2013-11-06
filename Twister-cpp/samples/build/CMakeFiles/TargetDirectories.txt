@@ -1,0 +1,2 @@
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/build/CMakeFiles/tcc_wordcount.dir
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/build/CMakeFiles/wordcount.dir

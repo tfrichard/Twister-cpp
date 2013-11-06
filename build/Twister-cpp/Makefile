@@ -33,37 +33,81 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /N/u/feiteng/software/cmake/bin/cmake
+CMAKE_COMMAND = /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake
 
 # The command to remove a file.
-RM = /N/u/feiteng/software/cmake/bin/cmake -E remove -f
+RM = /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/ccmake
+
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /N/u/feiteng/projs/twistercpp
+CMAKE_SOURCE_DIR = /ccs/home/feiteng/twistercpp
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /N/u/feiteng/projs/twistercpp/build
+CMAKE_BINARY_DIR = /ccs/home/feiteng/twistercpp/build
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/N/u/feiteng/software/cmake/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+.PHONY : install/strip/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/N/u/feiteng/software/cmake/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -72,14 +116,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /N/u/feiteng/projs/twistercpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /N/u/feiteng/projs/twistercpp/build/CMakeFiles /N/u/feiteng/projs/twistercpp/build/Twister-cpp/CMakeFiles/progress.marks
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /N/u/feiteng/projs/twistercpp/build/CMakeFiles 0
+	cd /ccs/home/feiteng/twistercpp/build && $(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles /ccs/home/feiteng/twistercpp/build/Twister-cpp/CMakeFiles/progress.marks
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /ccs/home/feiteng/twistercpp/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/clean
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/clean
 .PHONY : clean
 
 # The main clean target
@@ -88,22 +132,50 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/preinstall
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/preinstall
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /N/u/feiteng/projs/twistercpp/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /ccs/home/feiteng/twistercpp/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
+Twister-cpp/CMakeFiles/twister_daemon.dir/rule:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/CMakeFiles/twister_daemon.dir/rule
+.PHONY : Twister-cpp/CMakeFiles/twister_daemon.dir/rule
+
+# Convenience name for target.
+twister_daemon: Twister-cpp/CMakeFiles/twister_daemon.dir/rule
+.PHONY : twister_daemon
+
+# fast build rule for target.
+twister_daemon/fast:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/build
+.PHONY : twister_daemon/fast
+
+# Convenience name for target.
+Twister-cpp/CMakeFiles/twister_types.dir/rule:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/CMakeFiles/twister_types.dir/rule
+.PHONY : Twister-cpp/CMakeFiles/twister_types.dir/rule
+
+# Convenience name for target.
+twister_types: Twister-cpp/CMakeFiles/twister_types.dir/rule
+.PHONY : twister_types
+
+# fast build rule for target.
+twister_types/fast:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/build
+.PHONY : twister_types/fast
+
+# Convenience name for target.
 Twister-cpp/CMakeFiles/twistercpp.dir/rule:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/CMakeFiles/twistercpp.dir/rule
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f CMakeFiles/Makefile2 Twister-cpp/CMakeFiles/twistercpp.dir/rule
 .PHONY : Twister-cpp/CMakeFiles/twistercpp.dir/rule
 
 # Convenience name for target.
@@ -112,7 +184,7 @@ twistercpp: Twister-cpp/CMakeFiles/twistercpp.dir/rule
 
 # fast build rule for target.
 twistercpp/fast:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/build
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/build
 .PHONY : twistercpp/fast
 
 client/driver.o: client/driver.cpp.o
@@ -120,7 +192,8 @@ client/driver.o: client/driver.cpp.o
 
 # target to build an object file
 client/driver.cpp.o:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/driver.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/client/driver.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/driver.cpp.o
 .PHONY : client/driver.cpp.o
 
 client/driver.i: client/driver.cpp.i
@@ -128,7 +201,8 @@ client/driver.i: client/driver.cpp.i
 
 # target to preprocess a source file
 client/driver.cpp.i:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/driver.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/client/driver.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/driver.cpp.i
 .PHONY : client/driver.cpp.i
 
 client/driver.s: client/driver.cpp.s
@@ -136,7 +210,8 @@ client/driver.s: client/driver.cpp.s
 
 # target to generate assembly for a file
 client/driver.cpp.s:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/driver.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/client/driver.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/driver.cpp.s
 .PHONY : client/driver.cpp.s
 
 client/synchronizer.o: client/synchronizer.cpp.o
@@ -144,7 +219,8 @@ client/synchronizer.o: client/synchronizer.cpp.o
 
 # target to build an object file
 client/synchronizer.cpp.o:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/synchronizer.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/client/synchronizer.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/synchronizer.cpp.o
 .PHONY : client/synchronizer.cpp.o
 
 client/synchronizer.i: client/synchronizer.cpp.i
@@ -152,7 +228,8 @@ client/synchronizer.i: client/synchronizer.cpp.i
 
 # target to preprocess a source file
 client/synchronizer.cpp.i:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/synchronizer.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/client/synchronizer.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/synchronizer.cpp.i
 .PHONY : client/synchronizer.cpp.i
 
 client/synchronizer.s: client/synchronizer.cpp.s
@@ -160,8 +237,1134 @@ client/synchronizer.s: client/synchronizer.cpp.s
 
 # target to generate assembly for a file
 client/synchronizer.cpp.s:
-	cd /N/u/feiteng/projs/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/synchronizer.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/client/synchronizer.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/client/synchronizer.cpp.s
 .PHONY : client/synchronizer.cpp.s
+
+communication/conn_manager.o: communication/conn_manager.cpp.o
+.PHONY : communication/conn_manager.o
+
+# target to build an object file
+communication/conn_manager.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/communication/conn_manager.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/communication/conn_manager.cpp.o
+.PHONY : communication/conn_manager.cpp.o
+
+communication/conn_manager.i: communication/conn_manager.cpp.i
+.PHONY : communication/conn_manager.i
+
+# target to preprocess a source file
+communication/conn_manager.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/communication/conn_manager.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/communication/conn_manager.cpp.i
+.PHONY : communication/conn_manager.cpp.i
+
+communication/conn_manager.s: communication/conn_manager.cpp.s
+.PHONY : communication/conn_manager.s
+
+# target to generate assembly for a file
+communication/conn_manager.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/communication/conn_manager.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/communication/conn_manager.cpp.s
+.PHONY : communication/conn_manager.cpp.s
+
+config/driver_config.o: config/driver_config.cpp.o
+.PHONY : config/driver_config.o
+
+# target to build an object file
+config/driver_config.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/driver_config.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/driver_config.cpp.o
+.PHONY : config/driver_config.cpp.o
+
+config/driver_config.i: config/driver_config.cpp.i
+.PHONY : config/driver_config.i
+
+# target to preprocess a source file
+config/driver_config.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/driver_config.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/driver_config.cpp.i
+.PHONY : config/driver_config.cpp.i
+
+config/driver_config.s: config/driver_config.cpp.s
+.PHONY : config/driver_config.s
+
+# target to generate assembly for a file
+config/driver_config.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/driver_config.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/driver_config.cpp.s
+.PHONY : config/driver_config.cpp.s
+
+config/job_config.o: config/job_config.cpp.o
+.PHONY : config/job_config.o
+
+# target to build an object file
+config/job_config.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/job_config.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/job_config.cpp.o
+.PHONY : config/job_config.cpp.o
+
+config/job_config.i: config/job_config.cpp.i
+.PHONY : config/job_config.i
+
+# target to preprocess a source file
+config/job_config.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/job_config.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/job_config.cpp.i
+.PHONY : config/job_config.cpp.i
+
+config/job_config.s: config/job_config.cpp.s
+.PHONY : config/job_config.s
+
+# target to generate assembly for a file
+config/job_config.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/job_config.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/job_config.cpp.s
+.PHONY : config/job_config.cpp.s
+
+config/job_state.o: config/job_state.cpp.o
+.PHONY : config/job_state.o
+
+# target to build an object file
+config/job_state.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/job_state.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/job_state.cpp.o
+.PHONY : config/job_state.cpp.o
+
+config/job_state.i: config/job_state.cpp.i
+.PHONY : config/job_state.i
+
+# target to preprocess a source file
+config/job_state.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/job_state.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/job_state.cpp.i
+.PHONY : config/job_state.cpp.i
+
+config/job_state.s: config/job_state.cpp.s
+.PHONY : config/job_state.s
+
+# target to generate assembly for a file
+config/job_state.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/job_state.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/job_state.cpp.s
+.PHONY : config/job_state.cpp.s
+
+config/mapper_config.o: config/mapper_config.cpp.o
+.PHONY : config/mapper_config.o
+
+# target to build an object file
+config/mapper_config.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/mapper_config.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/mapper_config.cpp.o
+.PHONY : config/mapper_config.cpp.o
+
+config/mapper_config.i: config/mapper_config.cpp.i
+.PHONY : config/mapper_config.i
+
+# target to preprocess a source file
+config/mapper_config.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/mapper_config.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/mapper_config.cpp.i
+.PHONY : config/mapper_config.cpp.i
+
+config/mapper_config.s: config/mapper_config.cpp.s
+.PHONY : config/mapper_config.s
+
+# target to generate assembly for a file
+config/mapper_config.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/mapper_config.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/mapper_config.cpp.s
+.PHONY : config/mapper_config.cpp.s
+
+config/reduce_config.o: config/reduce_config.cpp.o
+.PHONY : config/reduce_config.o
+
+# target to build an object file
+config/reduce_config.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/reduce_config.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/reduce_config.cpp.o
+.PHONY : config/reduce_config.cpp.o
+
+config/reduce_config.i: config/reduce_config.cpp.i
+.PHONY : config/reduce_config.i
+
+# target to preprocess a source file
+config/reduce_config.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/reduce_config.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/reduce_config.cpp.i
+.PHONY : config/reduce_config.cpp.i
+
+config/reduce_config.s: config/reduce_config.cpp.s
+.PHONY : config/reduce_config.s
+
+# target to generate assembly for a file
+config/reduce_config.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/config/reduce_config.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/config/reduce_config.cpp.s
+.PHONY : config/reduce_config.cpp.s
+
+message/ack_mapper_msg.o: message/ack_mapper_msg.cpp.o
+.PHONY : message/ack_mapper_msg.o
+
+# target to build an object file
+message/ack_mapper_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/ack_mapper_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/ack_mapper_msg.cpp.o
+.PHONY : message/ack_mapper_msg.cpp.o
+
+message/ack_mapper_msg.i: message/ack_mapper_msg.cpp.i
+.PHONY : message/ack_mapper_msg.i
+
+# target to preprocess a source file
+message/ack_mapper_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/ack_mapper_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/ack_mapper_msg.cpp.i
+.PHONY : message/ack_mapper_msg.cpp.i
+
+message/ack_mapper_msg.s: message/ack_mapper_msg.cpp.s
+.PHONY : message/ack_mapper_msg.s
+
+# target to generate assembly for a file
+message/ack_mapper_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/ack_mapper_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/ack_mapper_msg.cpp.s
+.PHONY : message/ack_mapper_msg.cpp.s
+
+message/ack_msg.o: message/ack_msg.cpp.o
+.PHONY : message/ack_msg.o
+
+# target to build an object file
+message/ack_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/ack_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/ack_msg.cpp.o
+.PHONY : message/ack_msg.cpp.o
+
+message/ack_msg.i: message/ack_msg.cpp.i
+.PHONY : message/ack_msg.i
+
+# target to preprocess a source file
+message/ack_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/ack_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/ack_msg.cpp.i
+.PHONY : message/ack_msg.cpp.i
+
+message/ack_msg.s: message/ack_msg.cpp.s
+.PHONY : message/ack_msg.s
+
+# target to generate assembly for a file
+message/ack_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/ack_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/ack_msg.cpp.s
+.PHONY : message/ack_msg.cpp.s
+
+message/gather_start_msg.o: message/gather_start_msg.cpp.o
+.PHONY : message/gather_start_msg.o
+
+# target to build an object file
+message/gather_start_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/gather_start_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/gather_start_msg.cpp.o
+.PHONY : message/gather_start_msg.cpp.o
+
+message/gather_start_msg.i: message/gather_start_msg.cpp.i
+.PHONY : message/gather_start_msg.i
+
+# target to preprocess a source file
+message/gather_start_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/gather_start_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/gather_start_msg.cpp.i
+.PHONY : message/gather_start_msg.cpp.i
+
+message/gather_start_msg.s: message/gather_start_msg.cpp.s
+.PHONY : message/gather_start_msg.s
+
+# target to generate assembly for a file
+message/gather_start_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/gather_start_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/gather_start_msg.cpp.s
+.PHONY : message/gather_start_msg.cpp.s
+
+message/map_request_grp_msg.o: message/map_request_grp_msg.cpp.o
+.PHONY : message/map_request_grp_msg.o
+
+# target to build an object file
+message/map_request_grp_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_request_grp_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_request_grp_msg.cpp.o
+.PHONY : message/map_request_grp_msg.cpp.o
+
+message/map_request_grp_msg.i: message/map_request_grp_msg.cpp.i
+.PHONY : message/map_request_grp_msg.i
+
+# target to preprocess a source file
+message/map_request_grp_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_request_grp_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_request_grp_msg.cpp.i
+.PHONY : message/map_request_grp_msg.cpp.i
+
+message/map_request_grp_msg.s: message/map_request_grp_msg.cpp.s
+.PHONY : message/map_request_grp_msg.s
+
+# target to generate assembly for a file
+message/map_request_grp_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_request_grp_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_request_grp_msg.cpp.s
+.PHONY : message/map_request_grp_msg.cpp.s
+
+message/map_request_msg.o: message/map_request_msg.cpp.o
+.PHONY : message/map_request_msg.o
+
+# target to build an object file
+message/map_request_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_request_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_request_msg.cpp.o
+.PHONY : message/map_request_msg.cpp.o
+
+message/map_request_msg.i: message/map_request_msg.cpp.i
+.PHONY : message/map_request_msg.i
+
+# target to preprocess a source file
+message/map_request_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_request_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_request_msg.cpp.i
+.PHONY : message/map_request_msg.cpp.i
+
+message/map_request_msg.s: message/map_request_msg.cpp.s
+.PHONY : message/map_request_msg.s
+
+# target to generate assembly for a file
+message/map_request_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_request_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_request_msg.cpp.s
+.PHONY : message/map_request_msg.cpp.s
+
+message/map_start_grp_msg.o: message/map_start_grp_msg.cpp.o
+.PHONY : message/map_start_grp_msg.o
+
+# target to build an object file
+message/map_start_grp_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_start_grp_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_start_grp_msg.cpp.o
+.PHONY : message/map_start_grp_msg.cpp.o
+
+message/map_start_grp_msg.i: message/map_start_grp_msg.cpp.i
+.PHONY : message/map_start_grp_msg.i
+
+# target to preprocess a source file
+message/map_start_grp_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_start_grp_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_start_grp_msg.cpp.i
+.PHONY : message/map_start_grp_msg.cpp.i
+
+message/map_start_grp_msg.s: message/map_start_grp_msg.cpp.s
+.PHONY : message/map_start_grp_msg.s
+
+# target to generate assembly for a file
+message/map_start_grp_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_start_grp_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_start_grp_msg.cpp.s
+.PHONY : message/map_start_grp_msg.cpp.s
+
+message/map_start_msg.o: message/map_start_msg.cpp.o
+.PHONY : message/map_start_msg.o
+
+# target to build an object file
+message/map_start_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_start_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_start_msg.cpp.o
+.PHONY : message/map_start_msg.cpp.o
+
+message/map_start_msg.i: message/map_start_msg.cpp.i
+.PHONY : message/map_start_msg.i
+
+# target to preprocess a source file
+message/map_start_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_start_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_start_msg.cpp.i
+.PHONY : message/map_start_msg.cpp.i
+
+message/map_start_msg.s: message/map_start_msg.cpp.s
+.PHONY : message/map_start_msg.s
+
+# target to generate assembly for a file
+message/map_start_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/map_start_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/map_start_msg.cpp.s
+.PHONY : message/map_start_msg.cpp.s
+
+message/message.o: message/message.cpp.o
+.PHONY : message/message.o
+
+# target to build an object file
+message/message.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/message.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/message.cpp.o
+.PHONY : message/message.cpp.o
+
+message/message.i: message/message.cpp.i
+.PHONY : message/message.i
+
+# target to preprocess a source file
+message/message.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/message.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/message.cpp.i
+.PHONY : message/message.cpp.i
+
+message/message.s: message/message.cpp.s
+.PHONY : message/message.s
+
+# target to generate assembly for a file
+message/message.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/message.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/message.cpp.s
+.PHONY : message/message.cpp.s
+
+message/reduce_input_msg.o: message/reduce_input_msg.cpp.o
+.PHONY : message/reduce_input_msg.o
+
+# target to build an object file
+message/reduce_input_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_input_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_input_msg.cpp.o
+.PHONY : message/reduce_input_msg.cpp.o
+
+message/reduce_input_msg.i: message/reduce_input_msg.cpp.i
+.PHONY : message/reduce_input_msg.i
+
+# target to preprocess a source file
+message/reduce_input_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_input_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_input_msg.cpp.i
+.PHONY : message/reduce_input_msg.cpp.i
+
+message/reduce_input_msg.s: message/reduce_input_msg.cpp.s
+.PHONY : message/reduce_input_msg.s
+
+# target to generate assembly for a file
+message/reduce_input_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_input_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_input_msg.cpp.s
+.PHONY : message/reduce_input_msg.cpp.s
+
+message/reduce_input_request_msg.o: message/reduce_input_request_msg.cpp.o
+.PHONY : message/reduce_input_request_msg.o
+
+# target to build an object file
+message/reduce_input_request_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_input_request_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_input_request_msg.cpp.o
+.PHONY : message/reduce_input_request_msg.cpp.o
+
+message/reduce_input_request_msg.i: message/reduce_input_request_msg.cpp.i
+.PHONY : message/reduce_input_request_msg.i
+
+# target to preprocess a source file
+message/reduce_input_request_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_input_request_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_input_request_msg.cpp.i
+.PHONY : message/reduce_input_request_msg.cpp.i
+
+message/reduce_input_request_msg.s: message/reduce_input_request_msg.cpp.s
+.PHONY : message/reduce_input_request_msg.s
+
+# target to generate assembly for a file
+message/reduce_input_request_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_input_request_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_input_request_msg.cpp.s
+.PHONY : message/reduce_input_request_msg.cpp.s
+
+message/reduce_request_grp_msg.o: message/reduce_request_grp_msg.cpp.o
+.PHONY : message/reduce_request_grp_msg.o
+
+# target to build an object file
+message/reduce_request_grp_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_request_grp_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_request_grp_msg.cpp.o
+.PHONY : message/reduce_request_grp_msg.cpp.o
+
+message/reduce_request_grp_msg.i: message/reduce_request_grp_msg.cpp.i
+.PHONY : message/reduce_request_grp_msg.i
+
+# target to preprocess a source file
+message/reduce_request_grp_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_request_grp_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_request_grp_msg.cpp.i
+.PHONY : message/reduce_request_grp_msg.cpp.i
+
+message/reduce_request_grp_msg.s: message/reduce_request_grp_msg.cpp.s
+.PHONY : message/reduce_request_grp_msg.s
+
+# target to generate assembly for a file
+message/reduce_request_grp_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_request_grp_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_request_grp_msg.cpp.s
+.PHONY : message/reduce_request_grp_msg.cpp.s
+
+message/reduce_request_msg.o: message/reduce_request_msg.cpp.o
+.PHONY : message/reduce_request_msg.o
+
+# target to build an object file
+message/reduce_request_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_request_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_request_msg.cpp.o
+.PHONY : message/reduce_request_msg.cpp.o
+
+message/reduce_request_msg.i: message/reduce_request_msg.cpp.i
+.PHONY : message/reduce_request_msg.i
+
+# target to preprocess a source file
+message/reduce_request_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_request_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_request_msg.cpp.i
+.PHONY : message/reduce_request_msg.cpp.i
+
+message/reduce_request_msg.s: message/reduce_request_msg.cpp.s
+.PHONY : message/reduce_request_msg.s
+
+# target to generate assembly for a file
+message/reduce_request_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_request_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_request_msg.cpp.s
+.PHONY : message/reduce_request_msg.cpp.s
+
+message/reduce_start_msg.o: message/reduce_start_msg.cpp.o
+.PHONY : message/reduce_start_msg.o
+
+# target to build an object file
+message/reduce_start_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_start_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_start_msg.cpp.o
+.PHONY : message/reduce_start_msg.cpp.o
+
+message/reduce_start_msg.i: message/reduce_start_msg.cpp.i
+.PHONY : message/reduce_start_msg.i
+
+# target to preprocess a source file
+message/reduce_start_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_start_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_start_msg.cpp.i
+.PHONY : message/reduce_start_msg.cpp.i
+
+message/reduce_start_msg.s: message/reduce_start_msg.cpp.s
+.PHONY : message/reduce_start_msg.s
+
+# target to generate assembly for a file
+message/reduce_start_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/reduce_start_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/reduce_start_msg.cpp.s
+.PHONY : message/reduce_start_msg.cpp.s
+
+message/task_status_msg.o: message/task_status_msg.cpp.o
+.PHONY : message/task_status_msg.o
+
+# target to build an object file
+message/task_status_msg.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/task_status_msg.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/task_status_msg.cpp.o
+.PHONY : message/task_status_msg.cpp.o
+
+message/task_status_msg.i: message/task_status_msg.cpp.i
+.PHONY : message/task_status_msg.i
+
+# target to preprocess a source file
+message/task_status_msg.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/task_status_msg.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/task_status_msg.cpp.i
+.PHONY : message/task_status_msg.cpp.i
+
+message/task_status_msg.s: message/task_status_msg.cpp.s
+.PHONY : message/task_status_msg.s
+
+# target to generate assembly for a file
+message/task_status_msg.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/message/task_status_msg.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/message/task_status_msg.cpp.s
+.PHONY : message/task_status_msg.cpp.s
+
+serialization/in_archive.o: serialization/in_archive.cpp.o
+.PHONY : serialization/in_archive.o
+
+# target to build an object file
+serialization/in_archive.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/serialization/in_archive.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/serialization/in_archive.cpp.o
+.PHONY : serialization/in_archive.cpp.o
+
+serialization/in_archive.i: serialization/in_archive.cpp.i
+.PHONY : serialization/in_archive.i
+
+# target to preprocess a source file
+serialization/in_archive.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/serialization/in_archive.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/serialization/in_archive.cpp.i
+.PHONY : serialization/in_archive.cpp.i
+
+serialization/in_archive.s: serialization/in_archive.cpp.s
+.PHONY : serialization/in_archive.s
+
+# target to generate assembly for a file
+serialization/in_archive.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/serialization/in_archive.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/serialization/in_archive.cpp.s
+.PHONY : serialization/in_archive.cpp.s
+
+serialization/out_archive.o: serialization/out_archive.cpp.o
+.PHONY : serialization/out_archive.o
+
+# target to build an object file
+serialization/out_archive.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/serialization/out_archive.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/serialization/out_archive.cpp.o
+.PHONY : serialization/out_archive.cpp.o
+
+serialization/out_archive.i: serialization/out_archive.cpp.i
+.PHONY : serialization/out_archive.i
+
+# target to preprocess a source file
+serialization/out_archive.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/serialization/out_archive.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/serialization/out_archive.cpp.i
+.PHONY : serialization/out_archive.cpp.i
+
+serialization/out_archive.s: serialization/out_archive.cpp.s
+.PHONY : serialization/out_archive.s
+
+# target to generate assembly for a file
+serialization/out_archive.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/serialization/out_archive.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/serialization/out_archive.cpp.s
+.PHONY : serialization/out_archive.cpp.s
+
+tasks/map_task.o: tasks/map_task.cpp.o
+.PHONY : tasks/map_task.o
+
+# target to build an object file
+tasks/map_task.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/tasks/map_task.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/tasks/map_task.cpp.o
+.PHONY : tasks/map_task.cpp.o
+
+tasks/map_task.i: tasks/map_task.cpp.i
+.PHONY : tasks/map_task.i
+
+# target to preprocess a source file
+tasks/map_task.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/tasks/map_task.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/tasks/map_task.cpp.i
+.PHONY : tasks/map_task.cpp.i
+
+tasks/map_task.s: tasks/map_task.cpp.s
+.PHONY : tasks/map_task.s
+
+# target to generate assembly for a file
+tasks/map_task.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/tasks/map_task.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/tasks/map_task.cpp.s
+.PHONY : tasks/map_task.cpp.s
+
+tasks/reduce_task.o: tasks/reduce_task.cpp.o
+.PHONY : tasks/reduce_task.o
+
+# target to build an object file
+tasks/reduce_task.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/tasks/reduce_task.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/tasks/reduce_task.cpp.o
+.PHONY : tasks/reduce_task.cpp.o
+
+tasks/reduce_task.i: tasks/reduce_task.cpp.i
+.PHONY : tasks/reduce_task.i
+
+# target to preprocess a source file
+tasks/reduce_task.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/tasks/reduce_task.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/tasks/reduce_task.cpp.i
+.PHONY : tasks/reduce_task.cpp.i
+
+tasks/reduce_task.s: tasks/reduce_task.cpp.s
+.PHONY : tasks/reduce_task.s
+
+# target to generate assembly for a file
+tasks/reduce_task.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/tasks/reduce_task.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/tasks/reduce_task.cpp.s
+.PHONY : tasks/reduce_task.cpp.s
+
+types/gather_input.o: types/gather_input.cpp.o
+.PHONY : types/gather_input.o
+
+# target to build an object file
+types/gather_input.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/gather_input.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/gather_input.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/gather_input.cpp.o
+.PHONY : types/gather_input.cpp.o
+
+types/gather_input.i: types/gather_input.cpp.i
+.PHONY : types/gather_input.i
+
+# target to preprocess a source file
+types/gather_input.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/gather_input.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/gather_input.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/gather_input.cpp.i
+.PHONY : types/gather_input.cpp.i
+
+types/gather_input.s: types/gather_input.cpp.s
+.PHONY : types/gather_input.s
+
+# target to generate assembly for a file
+types/gather_input.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/gather_input.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/gather_input.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/gather_input.cpp.s
+.PHONY : types/gather_input.cpp.s
+
+types/int_value.o: types/int_value.cpp.o
+.PHONY : types/int_value.o
+
+# target to build an object file
+types/int_value.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/int_value.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/int_value.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/int_value.cpp.o
+.PHONY : types/int_value.cpp.o
+
+types/int_value.i: types/int_value.cpp.i
+.PHONY : types/int_value.i
+
+# target to preprocess a source file
+types/int_value.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/int_value.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/int_value.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/int_value.cpp.i
+.PHONY : types/int_value.cpp.i
+
+types/int_value.s: types/int_value.cpp.s
+.PHONY : types/int_value.s
+
+# target to generate assembly for a file
+types/int_value.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/int_value.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/int_value.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/int_value.cpp.s
+.PHONY : types/int_value.cpp.s
+
+types/key.o: types/key.cpp.o
+.PHONY : types/key.o
+
+# target to build an object file
+types/key.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/key.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/key.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/key.cpp.o
+.PHONY : types/key.cpp.o
+
+types/key.i: types/key.cpp.i
+.PHONY : types/key.i
+
+# target to preprocess a source file
+types/key.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/key.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/key.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/key.cpp.i
+.PHONY : types/key.cpp.i
+
+types/key.s: types/key.cpp.s
+.PHONY : types/key.s
+
+# target to generate assembly for a file
+types/key.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/key.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/key.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/key.cpp.s
+.PHONY : types/key.cpp.s
+
+types/reduce_input.o: types/reduce_input.cpp.o
+.PHONY : types/reduce_input.o
+
+# target to build an object file
+types/reduce_input.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/reduce_input.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/reduce_input.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/reduce_input.cpp.o
+.PHONY : types/reduce_input.cpp.o
+
+types/reduce_input.i: types/reduce_input.cpp.i
+.PHONY : types/reduce_input.i
+
+# target to preprocess a source file
+types/reduce_input.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/reduce_input.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/reduce_input.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/reduce_input.cpp.i
+.PHONY : types/reduce_input.cpp.i
+
+types/reduce_input.s: types/reduce_input.cpp.s
+.PHONY : types/reduce_input.s
+
+# target to generate assembly for a file
+types/reduce_input.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/reduce_input.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/reduce_input.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/reduce_input.cpp.s
+.PHONY : types/reduce_input.cpp.s
+
+types/string_key.o: types/string_key.cpp.o
+.PHONY : types/string_key.o
+
+# target to build an object file
+types/string_key.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/string_key.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/string_key.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/string_key.cpp.o
+.PHONY : types/string_key.cpp.o
+
+types/string_key.i: types/string_key.cpp.i
+.PHONY : types/string_key.i
+
+# target to preprocess a source file
+types/string_key.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/string_key.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/string_key.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/string_key.cpp.i
+.PHONY : types/string_key.cpp.i
+
+types/string_key.s: types/string_key.cpp.s
+.PHONY : types/string_key.s
+
+# target to generate assembly for a file
+types/string_key.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/string_key.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/string_key.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/string_key.cpp.s
+.PHONY : types/string_key.cpp.s
+
+types/string_value.o: types/string_value.cpp.o
+.PHONY : types/string_value.o
+
+# target to build an object file
+types/string_value.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/string_value.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/string_value.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/string_value.cpp.o
+.PHONY : types/string_value.cpp.o
+
+types/string_value.i: types/string_value.cpp.i
+.PHONY : types/string_value.i
+
+# target to preprocess a source file
+types/string_value.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/string_value.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/string_value.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/string_value.cpp.i
+.PHONY : types/string_value.cpp.i
+
+types/string_value.s: types/string_value.cpp.s
+.PHONY : types/string_value.s
+
+# target to generate assembly for a file
+types/string_value.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/string_value.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/string_value.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/string_value.cpp.s
+.PHONY : types/string_value.cpp.s
+
+types/value.o: types/value.cpp.o
+.PHONY : types/value.o
+
+# target to build an object file
+types/value.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/value.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/value.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/value.cpp.o
+.PHONY : types/value.cpp.o
+
+types/value.i: types/value.cpp.i
+.PHONY : types/value.i
+
+# target to preprocess a source file
+types/value.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/value.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/value.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/value.cpp.i
+.PHONY : types/value.cpp.i
+
+types/value.s: types/value.cpp.s
+.PHONY : types/value.s
+
+# target to generate assembly for a file
+types/value.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/types/value.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_types.dir/build.make Twister-cpp/CMakeFiles/twister_types.dir/types/value.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/types/value.cpp.s
+.PHONY : types/value.cpp.s
+
+utility/class_factory.o: utility/class_factory.cpp.o
+.PHONY : utility/class_factory.o
+
+# target to build an object file
+utility/class_factory.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/utility/class_factory.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/utility/class_factory.cpp.o
+.PHONY : utility/class_factory.cpp.o
+
+utility/class_factory.i: utility/class_factory.cpp.i
+.PHONY : utility/class_factory.i
+
+# target to preprocess a source file
+utility/class_factory.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/utility/class_factory.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/utility/class_factory.cpp.i
+.PHONY : utility/class_factory.cpp.i
+
+utility/class_factory.s: utility/class_factory.cpp.s
+.PHONY : utility/class_factory.s
+
+# target to generate assembly for a file
+utility/class_factory.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/utility/class_factory.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/utility/class_factory.cpp.s
+.PHONY : utility/class_factory.cpp.s
+
+utility/map_factory.o: utility/map_factory.cpp.o
+.PHONY : utility/map_factory.o
+
+# target to build an object file
+utility/map_factory.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/utility/map_factory.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/utility/map_factory.cpp.o
+.PHONY : utility/map_factory.cpp.o
+
+utility/map_factory.i: utility/map_factory.cpp.i
+.PHONY : utility/map_factory.i
+
+# target to preprocess a source file
+utility/map_factory.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/utility/map_factory.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/utility/map_factory.cpp.i
+.PHONY : utility/map_factory.cpp.i
+
+utility/map_factory.s: utility/map_factory.cpp.s
+.PHONY : utility/map_factory.s
+
+# target to generate assembly for a file
+utility/map_factory.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/utility/map_factory.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/utility/map_factory.cpp.s
+.PHONY : utility/map_factory.cpp.s
+
+utility/reduce_selector.o: utility/reduce_selector.cpp.o
+.PHONY : utility/reduce_selector.o
+
+# target to build an object file
+utility/reduce_selector.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/utility/reduce_selector.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/utility/reduce_selector.cpp.o
+.PHONY : utility/reduce_selector.cpp.o
+
+utility/reduce_selector.i: utility/reduce_selector.cpp.i
+.PHONY : utility/reduce_selector.i
+
+# target to preprocess a source file
+utility/reduce_selector.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/utility/reduce_selector.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/utility/reduce_selector.cpp.i
+.PHONY : utility/reduce_selector.cpp.i
+
+utility/reduce_selector.s: utility/reduce_selector.cpp.s
+.PHONY : utility/reduce_selector.s
+
+# target to generate assembly for a file
+utility/reduce_selector.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/utility/reduce_selector.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/utility/reduce_selector.cpp.s
+.PHONY : utility/reduce_selector.cpp.s
+
+worker/daemon.o: worker/daemon.cpp.o
+.PHONY : worker/daemon.o
+
+# target to build an object file
+worker/daemon.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/daemon.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/daemon.cpp.o
+.PHONY : worker/daemon.cpp.o
+
+worker/daemon.i: worker/daemon.cpp.i
+.PHONY : worker/daemon.i
+
+# target to preprocess a source file
+worker/daemon.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/daemon.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/daemon.cpp.i
+.PHONY : worker/daemon.cpp.i
+
+worker/daemon.s: worker/daemon.cpp.s
+.PHONY : worker/daemon.s
+
+# target to generate assembly for a file
+worker/daemon.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/daemon.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/daemon.cpp.s
+.PHONY : worker/daemon.cpp.s
+
+worker/gather.o: worker/gather.cpp.o
+.PHONY : worker/gather.o
+
+# target to build an object file
+worker/gather.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/gather.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/gather.cpp.o
+.PHONY : worker/gather.cpp.o
+
+worker/gather.i: worker/gather.cpp.i
+.PHONY : worker/gather.i
+
+# target to preprocess a source file
+worker/gather.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/gather.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/gather.cpp.i
+.PHONY : worker/gather.cpp.i
+
+worker/gather.s: worker/gather.cpp.s
+.PHONY : worker/gather.s
+
+# target to generate assembly for a file
+worker/gather.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/gather.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/gather.cpp.s
+.PHONY : worker/gather.cpp.s
+
+worker/map_output_collector.o: worker/map_output_collector.cpp.o
+.PHONY : worker/map_output_collector.o
+
+# target to build an object file
+worker/map_output_collector.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/map_output_collector.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/map_output_collector.cpp.o
+.PHONY : worker/map_output_collector.cpp.o
+
+worker/map_output_collector.i: worker/map_output_collector.cpp.i
+.PHONY : worker/map_output_collector.i
+
+# target to preprocess a source file
+worker/map_output_collector.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/map_output_collector.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/map_output_collector.cpp.i
+.PHONY : worker/map_output_collector.cpp.i
+
+worker/map_output_collector.s: worker/map_output_collector.cpp.s
+.PHONY : worker/map_output_collector.s
+
+# target to generate assembly for a file
+worker/map_output_collector.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/map_output_collector.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/map_output_collector.cpp.s
+.PHONY : worker/map_output_collector.cpp.s
+
+worker/mapper.o: worker/mapper.cpp.o
+.PHONY : worker/mapper.o
+
+# target to build an object file
+worker/mapper.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/mapper.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/mapper.cpp.o
+.PHONY : worker/mapper.cpp.o
+
+worker/mapper.i: worker/mapper.cpp.i
+.PHONY : worker/mapper.i
+
+# target to preprocess a source file
+worker/mapper.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/mapper.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/mapper.cpp.i
+.PHONY : worker/mapper.cpp.i
+
+worker/mapper.s: worker/mapper.cpp.s
+.PHONY : worker/mapper.s
+
+# target to generate assembly for a file
+worker/mapper.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/mapper.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/mapper.cpp.s
+.PHONY : worker/mapper.cpp.s
+
+worker/reduce_output_collector.o: worker/reduce_output_collector.cpp.o
+.PHONY : worker/reduce_output_collector.o
+
+# target to build an object file
+worker/reduce_output_collector.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/reduce_output_collector.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/reduce_output_collector.cpp.o
+.PHONY : worker/reduce_output_collector.cpp.o
+
+worker/reduce_output_collector.i: worker/reduce_output_collector.cpp.i
+.PHONY : worker/reduce_output_collector.i
+
+# target to preprocess a source file
+worker/reduce_output_collector.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/reduce_output_collector.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/reduce_output_collector.cpp.i
+.PHONY : worker/reduce_output_collector.cpp.i
+
+worker/reduce_output_collector.s: worker/reduce_output_collector.cpp.s
+.PHONY : worker/reduce_output_collector.s
+
+# target to generate assembly for a file
+worker/reduce_output_collector.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/reduce_output_collector.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/reduce_output_collector.cpp.s
+.PHONY : worker/reduce_output_collector.cpp.s
+
+worker/reducer.o: worker/reducer.cpp.o
+.PHONY : worker/reducer.o
+
+# target to build an object file
+worker/reducer.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/reducer.cpp.o
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/reducer.cpp.o
+.PHONY : worker/reducer.cpp.o
+
+worker/reducer.i: worker/reducer.cpp.i
+.PHONY : worker/reducer.i
+
+# target to preprocess a source file
+worker/reducer.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/reducer.cpp.i
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/reducer.cpp.i
+.PHONY : worker/reducer.cpp.i
+
+worker/reducer.s: worker/reducer.cpp.s
+.PHONY : worker/reducer.s
+
+# target to generate assembly for a file
+worker/reducer.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/reducer.cpp.s
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twistercpp.dir/build.make Twister-cpp/CMakeFiles/twistercpp.dir/worker/reducer.cpp.s
+.PHONY : worker/reducer.cpp.s
+
+worker/run.o: worker/run.cpp.o
+.PHONY : worker/run.o
+
+# target to build an object file
+worker/run.cpp.o:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/run.cpp.o
+.PHONY : worker/run.cpp.o
+
+worker/run.i: worker/run.cpp.i
+.PHONY : worker/run.i
+
+# target to preprocess a source file
+worker/run.cpp.i:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/run.cpp.i
+.PHONY : worker/run.cpp.i
+
+worker/run.s: worker/run.cpp.s
+.PHONY : worker/run.s
+
+# target to generate assembly for a file
+worker/run.cpp.s:
+	cd /ccs/home/feiteng/twistercpp/build && $(MAKE) -f Twister-cpp/CMakeFiles/twister_daemon.dir/build.make Twister-cpp/CMakeFiles/twister_daemon.dir/worker/run.cpp.s
+.PHONY : worker/run.cpp.s
 
 # Help Target
 help:
@@ -170,7 +1373,13 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... twister_daemon"
+	@echo "... twister_types"
 	@echo "... twistercpp"
 	@echo "... client/driver.o"
 	@echo "... client/driver.i"
@@ -178,6 +1387,129 @@ help:
 	@echo "... client/synchronizer.o"
 	@echo "... client/synchronizer.i"
 	@echo "... client/synchronizer.s"
+	@echo "... communication/conn_manager.o"
+	@echo "... communication/conn_manager.i"
+	@echo "... communication/conn_manager.s"
+	@echo "... config/driver_config.o"
+	@echo "... config/driver_config.i"
+	@echo "... config/driver_config.s"
+	@echo "... config/job_config.o"
+	@echo "... config/job_config.i"
+	@echo "... config/job_config.s"
+	@echo "... config/job_state.o"
+	@echo "... config/job_state.i"
+	@echo "... config/job_state.s"
+	@echo "... config/mapper_config.o"
+	@echo "... config/mapper_config.i"
+	@echo "... config/mapper_config.s"
+	@echo "... config/reduce_config.o"
+	@echo "... config/reduce_config.i"
+	@echo "... config/reduce_config.s"
+	@echo "... message/ack_mapper_msg.o"
+	@echo "... message/ack_mapper_msg.i"
+	@echo "... message/ack_mapper_msg.s"
+	@echo "... message/ack_msg.o"
+	@echo "... message/ack_msg.i"
+	@echo "... message/ack_msg.s"
+	@echo "... message/gather_start_msg.o"
+	@echo "... message/gather_start_msg.i"
+	@echo "... message/gather_start_msg.s"
+	@echo "... message/map_request_grp_msg.o"
+	@echo "... message/map_request_grp_msg.i"
+	@echo "... message/map_request_grp_msg.s"
+	@echo "... message/map_request_msg.o"
+	@echo "... message/map_request_msg.i"
+	@echo "... message/map_request_msg.s"
+	@echo "... message/map_start_grp_msg.o"
+	@echo "... message/map_start_grp_msg.i"
+	@echo "... message/map_start_grp_msg.s"
+	@echo "... message/map_start_msg.o"
+	@echo "... message/map_start_msg.i"
+	@echo "... message/map_start_msg.s"
+	@echo "... message/message.o"
+	@echo "... message/message.i"
+	@echo "... message/message.s"
+	@echo "... message/reduce_input_msg.o"
+	@echo "... message/reduce_input_msg.i"
+	@echo "... message/reduce_input_msg.s"
+	@echo "... message/reduce_input_request_msg.o"
+	@echo "... message/reduce_input_request_msg.i"
+	@echo "... message/reduce_input_request_msg.s"
+	@echo "... message/reduce_request_grp_msg.o"
+	@echo "... message/reduce_request_grp_msg.i"
+	@echo "... message/reduce_request_grp_msg.s"
+	@echo "... message/reduce_request_msg.o"
+	@echo "... message/reduce_request_msg.i"
+	@echo "... message/reduce_request_msg.s"
+	@echo "... message/reduce_start_msg.o"
+	@echo "... message/reduce_start_msg.i"
+	@echo "... message/reduce_start_msg.s"
+	@echo "... message/task_status_msg.o"
+	@echo "... message/task_status_msg.i"
+	@echo "... message/task_status_msg.s"
+	@echo "... serialization/in_archive.o"
+	@echo "... serialization/in_archive.i"
+	@echo "... serialization/in_archive.s"
+	@echo "... serialization/out_archive.o"
+	@echo "... serialization/out_archive.i"
+	@echo "... serialization/out_archive.s"
+	@echo "... tasks/map_task.o"
+	@echo "... tasks/map_task.i"
+	@echo "... tasks/map_task.s"
+	@echo "... tasks/reduce_task.o"
+	@echo "... tasks/reduce_task.i"
+	@echo "... tasks/reduce_task.s"
+	@echo "... types/gather_input.o"
+	@echo "... types/gather_input.i"
+	@echo "... types/gather_input.s"
+	@echo "... types/int_value.o"
+	@echo "... types/int_value.i"
+	@echo "... types/int_value.s"
+	@echo "... types/key.o"
+	@echo "... types/key.i"
+	@echo "... types/key.s"
+	@echo "... types/reduce_input.o"
+	@echo "... types/reduce_input.i"
+	@echo "... types/reduce_input.s"
+	@echo "... types/string_key.o"
+	@echo "... types/string_key.i"
+	@echo "... types/string_key.s"
+	@echo "... types/string_value.o"
+	@echo "... types/string_value.i"
+	@echo "... types/string_value.s"
+	@echo "... types/value.o"
+	@echo "... types/value.i"
+	@echo "... types/value.s"
+	@echo "... utility/class_factory.o"
+	@echo "... utility/class_factory.i"
+	@echo "... utility/class_factory.s"
+	@echo "... utility/map_factory.o"
+	@echo "... utility/map_factory.i"
+	@echo "... utility/map_factory.s"
+	@echo "... utility/reduce_selector.o"
+	@echo "... utility/reduce_selector.i"
+	@echo "... utility/reduce_selector.s"
+	@echo "... worker/daemon.o"
+	@echo "... worker/daemon.i"
+	@echo "... worker/daemon.s"
+	@echo "... worker/gather.o"
+	@echo "... worker/gather.i"
+	@echo "... worker/gather.s"
+	@echo "... worker/map_output_collector.o"
+	@echo "... worker/map_output_collector.i"
+	@echo "... worker/map_output_collector.s"
+	@echo "... worker/mapper.o"
+	@echo "... worker/mapper.i"
+	@echo "... worker/mapper.s"
+	@echo "... worker/reduce_output_collector.o"
+	@echo "... worker/reduce_output_collector.i"
+	@echo "... worker/reduce_output_collector.s"
+	@echo "... worker/reducer.o"
+	@echo "... worker/reducer.i"
+	@echo "... worker/reducer.s"
+	@echo "... worker/run.o"
+	@echo "... worker/run.i"
+	@echo "... worker/run.s"
 .PHONY : help
 
 
@@ -189,6 +1521,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /N/u/feiteng/projs/twistercpp/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /ccs/home/feiteng/twistercpp/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

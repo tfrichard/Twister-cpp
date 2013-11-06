@@ -10,6 +10,7 @@
 #define __Twister_cpp__in_archive__
 
 #include <iostream>
+#include <cstring>
 //#include <Twister-cpp/message/message.h>
 
 

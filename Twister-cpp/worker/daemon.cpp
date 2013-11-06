@@ -38,15 +38,22 @@ namespace twister {
     using boost::asio::ip::tcp;
     
     
-    daemon::daemon(boost::asio::io_service &io_service_, const tcp::endpoint &end_point_) : \
+    daemon::daemon(boost::asio::io_service &io_service_, const tcp::endpoint &end_point_, int daemon_id_, const std::string& daemon_ip, const std::string& driver_ip_) : \
     acceptor(io_service_, end_point_), socket(io_service_)
     {
-        //should be $TWISTER_HOME/bin in release
-        class_factory::add_class_path("/Users/feiteng/Library/Developer/Xcode/DerivedData/Twister-cpp-bhxrgrfnxsvvhwfeqbijayxvhjpd/Build/Products/Debug/");
+        //should be $TWISTER_HOME/lib in release
+		const char* twister_home = getenv("TWISTER_HOME");
+		if (twister_home == NULL) {
+			std::cerr << "please set TWISTER_HOME properly!" << std::endl;
+			exit(-1);
+		}
+		std::string lib_path(twister_home);
+		lib_path += "/lib/";
+        class_factory::add_class_path(lib_path);
         
-        daemon_id = 0;
-        ip_addr = "127.0.0.1";
-        driver_ip = "127.0.0.1";
+        daemon_id = daemon_id_;
+        ip_addr = daemon_ip;
+        driver_ip = driver_ip_;
         do_accept();
         port = end_point_.port();
     }
@@ -210,24 +217,33 @@ namespace twister {
             boost::asio::write(socket, boost::asio::buffer(out_ar.buf, out_ar.len), ec);
             
         } else if (msg_type == REDUCE_INPUT_MSG) {
-            reduce_input_msg reduce_input(in_arc);
-            std::vector<int> &reduce_tasks = reduce_input.task_nos;
-            
-            std::cout << "reduce task: " ;
-            for (int i : reduce_tasks) {
-                std::cout << i << " ";
-            }
-            std::cout << " are going to request reduce input in daemon " << this->daemon_id << std::endl;
-            
-            for (int task_no : reduce_tasks) {
-                reduce_task* reduce_task_ptr = reduce_task_table[task_no];
-                reduce_task_ptr->get_reduce_input(reduce_input.daemon_ip);
-            }
-            
-            ack_msg ack_reduce_input(ACK_TYPE::REDUCE_INPUT_MSG_ACK);
-            out_archive out_ar;
-            out_ar << ack_reduce_input;
-            boost::asio::write(socket, boost::asio::buffer(out_ar.buf, out_ar.len), ec);
+			if (reduce_task_table.empty()) {
+				ack_msg ack_reduce_input(ACK_TYPE::REDUCE_INPUT_MSG_ACK);
+				out_archive out_ar;
+				out_ar << ack_reduce_input;
+				boost::asio::write(socket, boost::asio::buffer(out_ar.buf, out_ar.len), ec);
+			} else {
+				reduce_input_msg reduce_input(in_arc);
+				std::vector<int> &reduce_tasks = reduce_input.task_nos;
+				
+				std::cout << "reduce task: " ;
+				for (int i : reduce_tasks) {
+					std::cout << i << " ";
+				}
+				std::cout << " are going to request reduce input in daemon " << this->daemon_id << std::endl;
+				
+				for (int task_no : reduce_tasks) {
+					if (reduce_task_table.find(task_no) != reduce_task_table.end()) {
+						reduce_task* reduce_task_ptr = reduce_task_table[task_no];
+						reduce_task_ptr->get_reduce_input(reduce_input.daemon_ip);
+					}
+				}
+				
+				ack_msg ack_reduce_input(ACK_TYPE::REDUCE_INPUT_MSG_ACK);
+				out_archive out_ar;
+				out_ar << ack_reduce_input;
+				boost::asio::write(socket, boost::asio::buffer(out_ar.buf, out_ar.len), ec);
+			}
             
         } else if (msg_type == REDUCE_INPUT_REQUEST) {
             reduce_input_request_msg reduce_input_request(in_arc);
@@ -356,7 +372,15 @@ namespace twister {
                 ack_ar << gather_start_ack;
                 
                 boost::asio::write(socket, boost::asio::buffer(ack_ar.buf, ack_ar.len), ec);
-            }
+            } else {
+				//no reduce task on this daemon
+				std::cout << "gather works finished now..." << std::endl;
+				ack_msg gather_start_ack(ACK_TYPE::START_GATHER_ACK);
+				out_archive ack_ar;
+				ack_ar << gather_start_ack;
+
+				boost::asio::write(socket, boost::asio::buffer(ack_ar.buf, ack_ar.len), ec);
+			}
         } else {
             std::cerr << "not supported msg type" << std::endl;
             exit(-1);

@@ -42,6 +42,7 @@ namespace twister{
         this->jobconf = job_config::getInstance();
         this->jobstate = job_state::getInstance();
         this->sync_mgr = new synchronizer(this, jobconf, jobstate);
+		this->gather_ = NULL;
         
         //test connect with all daemons
         std::pair<unsigned int, std::string> item;
@@ -68,6 +69,7 @@ namespace twister{
         jobconf = job_conf;
         jobstate = job_state::getInstance();
         sync_mgr = new synchronizer(this, jobconf, jobstate);
+		gather_ = NULL;
 
         std::pair<unsigned int, std::string> item;
         std::vector<std::string> daemon_ips;
@@ -147,21 +149,23 @@ namespace twister{
     void driver::config_reduce_inputs() {
         std::map<int, std::vector<int>> &reduce_input_map = conn_mgr->reduce_input_deamon_map;
         int num_of_daemons = conn_mgr->num_of_managed_daemon;
-        
-        for (int daemon_no = 0; daemon_no < num_of_daemons; daemon_no++) {
-            if (reduce_input_map.find(daemon_no) == reduce_input_map.end()) {
-                std::cout << "there's no key hashed to daemon " << daemon_no << std::endl;
-                continue;
-            }
-            
-            std::string daemon_ip_port = conn_mgr->daemon_map[daemon_no] + ":" + std::to_string(12500 + daemon_no);
-            reduce_input_msg reduce_input(daemon_ip_port, reduce_input_map[daemon_no]);
-            //the send_msg should be async here, otherwise all daemons cannot request reduce input in parallel
-            if (!conn_mgr->send_msg(reduce_input, daemon_no)) {
-                std::cerr << "failed to send reduce input message  to daemon " << daemon_no << std::endl;
-                exit(-1);
-            }
-        }
+   		
+		for (int task_no = 0; task_no < jobconf->num_reducers; task_no++) {
+			for (int daemon_no = 0; daemon_no < num_of_daemons; daemon_no++) {
+				if (reduce_input_map.find(daemon_no) == reduce_input_map.end()) {
+					std::cout << "there's no key hashed to daemon " << daemon_no << std::endl;
+					continue;
+				}
+				
+				std::string daemon_ip_port = conn_mgr->daemon_map[daemon_no] + ":" + std::to_string(12500 + daemon_no);
+				reduce_input_msg reduce_input(daemon_ip_port, reduce_input_map[daemon_no]);
+				//the send_msg should be async here, otherwise all daemons cannot request reduce input in parallel
+				if (!conn_mgr->send_msg(reduce_input, task_no % conn_mgr->num_of_managed_daemon)) {
+					std::cerr << "failed to send reduce input message  to daemon " << daemon_no << std::endl;
+					exit(-1);
+				}
+			}
+		}
         
     }
     
@@ -362,7 +366,7 @@ namespace twister{
     
     bool driver::runMapReduceJob(value* val) {
         //should be $TWISTER_HOME/bin in release
-        class_factory::add_class_path("/Users/feiteng/Library/Developer/Xcode/DerivedData/Twister-cpp-bhxrgrfnxsvvhwfeqbijayxvhjpd/Build/Products/Debug/");
+        class_factory::add_class_path("/ccs/home/feiteng/twistercpp/lib/");
         
         start_map(val);
         std::thread sync_thread(&synchronizer::main_sync_loop, sync_mgr);

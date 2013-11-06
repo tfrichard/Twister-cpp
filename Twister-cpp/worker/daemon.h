@@ -24,6 +24,8 @@
 namespace twister {
     using boost::asio::ip::tcp;
     
+	static std::atomic_flag mutex = ATOMIC_FLAG_INIT;
+
     class daemon {
     private:
         std::string ip_addr;
@@ -32,7 +34,6 @@ namespace twister {
         int daemon_id;
         job_config* job_conf;
         
-        std::atomic_flag mutex;
         std::map<int, map_task*> map_task_table;
         std::map<int, reduce_task*> reduce_task_table;
         
@@ -41,7 +42,7 @@ namespace twister {
         
      
     public:
-        daemon(boost::asio::io_service&, const tcp::endpoint &);
+        daemon(boost::asio::io_service&, const tcp::endpoint &, int, const std::string&, const std::string&);
         virtual ~daemon();
         void foo();
         

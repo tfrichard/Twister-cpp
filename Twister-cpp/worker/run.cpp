@@ -18,7 +18,10 @@
 #include <unistd.h>
 
 using namespace twister;
-std::string map_name = "word_count_mapper";
+
+/*
+ *IN: daemon_id, daemon_ip, driver_ip
+ */
 
 int main(int argc, char* argv[]) {
 //    void* dl_handle = dlopen("libapp_test_dl.dylib", RTLD_NOW);
@@ -37,13 +40,21 @@ int main(int argc, char* argv[]) {
 //    mapper* real_mapper = mapper_hook();
 //    real_mapper->map(new map_output_collector, string_key("key"), string_value("value"));
 //    dlclose(dl_handle);
-    
+   	if (argc != 4) {
+		std::cerr << "Usage: ./twister_daemon daemon_id daemon_ip driver_ip" << std::endl;
+		exit(-1);
+	} 
+
     using twister::daemon;
     using boost::asio::ip::tcp;
+	int daemon_id = atoi(argv[1]);
+	std::string daemon_ip((const char*)argv[2]);
+	std::string driver_ip((const char*)argv[3]);
+
     boost::asio::io_service io_service;
-    tcp::endpoint end_point(tcp::v4(), 12500);
+    tcp::endpoint end_point(tcp::v4(), 12500 + daemon_id);
     
-    daemon d(io_service, end_point);
+    daemon d(io_service, end_point, daemon_id, daemon_ip, driver_ip);
     
     io_service.run();
     

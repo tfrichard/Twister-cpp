@@ -14,12 +14,12 @@ namespace twister {
     std::vector<std::string> class_factory::class_pathes = std::vector<std::string>();
     std::vector<void*> class_factory::dl_handlers = std::vector<void*>();
     std::map<std::string, std::string> class_factory::class_lib_map = {
-        {"key", "libkey_value_types.dylib"},
-        {"value", "libkey_value_types.dylib"},
-        {"string_key", "libkey_value_types.dylib"},
-        {"string_value", "libkey_value_types.dylib"},
-        {"int_value", "libkey_value_types.dylib"},
-        {"reduce_input", "libkey_value_types.dylib"},
+        {"key", "libtwister_types.so"},
+        {"value", "libtwister_types.so"},
+        {"string_key", "libtwister_types.so"},
+        {"string_value", "libtwister_types.so"},
+        {"int_value", "libtwister_types.so"},
+        {"reduce_input", "libtwister_types.so"},
         //{"word_count_mapper", "libapp_test_dl.dylib"},
         //{"word_count_reducer", "libapp_test_dl.dylib"},
         //{"word_count_gather", "libapp_test_dl.dylib"},
@@ -38,7 +38,7 @@ namespace twister {
         }
         
         if (dl_handle == NULL) {
-            std::cerr << "cannot find the class in all pathes! exit" << std::endl;
+            std::cerr << "cannot find the class: " << class_name << " in all pathes! exit" << std::endl;
             exit(-1);
         }
         

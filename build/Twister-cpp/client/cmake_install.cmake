@@ -1,8 +1,8 @@
-# Install script for directory: /N/u/feiteng/projs/twistercpp/Twister-cpp/client
+# Install script for directory: /ccs/home/feiteng/twistercpp/Twister-cpp/client
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  SET(CMAKE_INSTALL_PREFIX "/usr/local")
+  SET(CMAKE_INSTALL_PREFIX "/ccs/home/feiteng/twistercpp")
 ENDIF(NOT DEFINED CMAKE_INSTALL_PREFIX)
 STRING(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

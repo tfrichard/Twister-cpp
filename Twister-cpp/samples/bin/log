@@ -1,0 +1,724 @@
+job_config starts
+node file: /ccs/home/feiteng/twistercpp/bin/nodes
+data file: /ccs/home/feiteng/twistercpp/data/wc_data
+job_config ends
+mr job word_count_21279c66-7613-4ee2-a395-efe80c8e482d starts now.
+128.219.141.134
+try to send task request to daemon server
+msg type is: 10
+out archive buf len is 788
+try to send task request to daemon server
+msg type is: 10
+out archive buf len is 788
+try to get task starting response from daemon: 128.219.141.132
+transferred 8 size of message to daemon successfully
+try to get task starting response from daemon: 128.219.141.134
+transferred 8 size of message to daemon successfully
+map tasks started successfully on daemons
+word_count_21279c66-7613-4ee2-a395-efe80c8e482d0
+try to send task request to daemon server
+msg type is: 12
+out archive buf len is 380
+try to send task request to daemon server
+msg type is: 12
+out archive buf len is 380
+try to get task starting response from daemon: 128.219.141.132
+transferred 24 size of message to daemon successfully
+try to get task starting response from daemon: 128.219.141.134
+transferred 24 size of message to daemon successfully
+mapper function completed successfully on daemons
+sync_manager starting from here
+data shuffle starting from here
+try to send task request to daemon server: 0
+msg type is 4
+out archive buf len is 842
+try to get task starting response from daemon: 0
+transferred 8 size of message to daemon successfully
+reduce tasks started successfully on daemons
+try to send task request to daemon server: 0
+msg type is 16
+out archive buf len is 58
+try to get task starting response from daemon: 0
+transferred 8 size of message to daemon successfully
+try to send task request to daemon server: 0
+msg type is 16
+out archive buf len is 58
+try to get task starting response from daemon: 0
+transferred 8 size of message to daemon successfully
+reducer works starting from here
+try to send task request to daemon server
+msg type is: 6
+out archive buf len is 8
+try to send task request to daemon server
+msg type is: 6
+out archive buf len is 8
+try to get task starting response from daemon: 128.219.141.132
+transferred 8 size of message to daemon successfully
+try to get task starting response from daemon: 128.219.141.134
+transferred 8 size of message to daemon successfully
+gather works starting from here
+driver listen up...
+ready to accept daemon request
+try to send task request to daemon server
+msg type is: 18
+out archive buf len is 8
+try to send task request to daemon server
+msg type is: 18
+out archive buf len is 8
+connection accepted
+try to get task starting response from daemon: 128.219.141.132
+driver received msg with size: 5266
+msg type is: 17
+ready to accept daemon request
+connection accepted
+driver received msg with size: 20152
+msg type is: 17
+transferred 8 size of message to daemon successfully
+try to get task starting response from daemon: 128.219.141.134
+ready to accept daemon request
+transferred 8 size of message to daemon successfully
+synchronizer is completed!
+ : 106
+0 : 2
+04 : 2
+0H0O3z : 2
+0HUw : 2
+0Sd3nk : 2
+0U : 2
+0V : 2
+0ZD9oT6K : 2
+0ZuPP : 2
+0ci1i1TM : 2
+0mg : 2
+0o0J90 : 2
+0uBrPpt3 : 2
+0vtp : 2
+0w2kQw1 : 2
+0wYGYJmKp : 2
+1 : 4
+14SvO : 2
+15y : 2
+1BlWm95 : 2
+1H : 2
+1HwMtgfS : 2
+1J2VjGG : 2
+1MyXQGqU : 2
+1OcK : 2
+1SQQIa : 2
+1adEfRuPX : 2
+1k : 2
+1xR97sc5T : 2
+1yLa7Vdh7 : 2
+2 : 4
+26mwovdJ6 : 2
+2HWJi22 : 2
+2LiM : 2
+2SxrwYWtd : 2
+2UQUOWJ : 2
+2njyh : 2
+2pZ236J : 2
+2tK : 2
+2z : 2
+31aDSJ : 2
+37pkdf : 2
+3A8 : 2
+3D : 2
+3HLPzIvT : 2
+3Kk : 2
+3L9OHJ : 2
+3MaDCv : 2
+3PFf : 2
+3VMHhURo : 2
+3nC4Z : 2
+3sBEO : 2
+3sT8 : 2
+3yS : 2
+3yqOD : 2
+40LwCnx9 : 2
+4HeHsES : 2
+4JLgeipe : 2
+4QCu : 2
+4TIj4Z : 2
+4gsl0KRx : 2
+4poSt7 : 2
+4snjewc : 2
+4wL : 2
+5 : 4
+57y : 2
+5EE : 2
+5JE : 2
+5OaQOp : 2
+5d3Th : 2
+5lh : 2
+6CC30dG6Y : 2
+6EhfK : 2
+6PNW : 2
+6ba : 2
+6dKKCXIv : 2
+6kGXr5Ul7 : 2
+6rM8Px : 2
+6ss54R5 : 2
+6vpUHU1n : 2
+7 : 2
+70zuKXRw : 2
+7DB6ut : 2
+7E8kiLDjs : 2
+7O7 : 2
+7PpJO3 : 2
+7blvBlSY : 2
+8KZ9wP : 2
+8KpTfdOj : 2
+8NHRse : 2
+8PNDY : 2
+8QlM76 : 2
+8UagDgNe7 : 2
+8Xb9jDn : 2
+8Y7LqZIBQ : 2
+8f : 2
+8gyfIB : 2
+8irE : 2
+8jR : 2
+8muk1oJ7a : 2
+8t : 2
+8wK : 2
+8wVny1ctc : 2
+9 : 4
+90yW : 2
+9Gg6 : 2
+9M5PX9 : 2
+9fWDT : 2
+9tapkebn : 2
+9wtU : 2
+9x1 : 2
+9zwW : 2
+A0GWXIIwo : 2
+A2f2Cs : 2
+AB6F1zk6v : 2
+AE3 : 2
+AHOHgB : 2
+ASDSBYA4 : 2
+AXrwk : 2
+AYrD : 2
+Ag8nrH : 2
+AgCdKkm : 2
+Ah : 2
+Ah6q9V3 : 2
+AkgG73 : 2
+AnL4cuTow : 2
+B : 2
+B3ac2ab2i : 2
+BA5NQxJt : 2
+BQQEE : 2
+BUKz : 2
+Bn : 2
+Bp8oR1X : 2
+Brxz : 2
+C : 4
+C14 : 2
+C7Xbu : 2
+CA3VSr : 2
+CC2KWwp0Z : 2
+CR : 2
+CdZ : 2
+Cg : 2
+Cj6MLKq3B : 2
+ClKyEQIx8 : 2
+CtjbYDq : 2
+D : 4
+D1VfN : 2
+DHrCDN : 2
+DM : 2
+DNX5us : 2
+DQ9hK9ZV : 2
+DRJKRE : 2
+DRpQmu : 2
+DTu8pOrL : 2
+DVU : 2
+DsL2s6aR : 2
+DxS22Jjz : 2
+E9Z4flP : 2
+EAC8hV : 2
+EGiGw : 2
+EN : 2
+EQM42G : 2
+ESR : 2
+EX : 2
+Eb : 2
+Ek : 2
+EuWGjeP4J : 2
+Euu : 2
+F62o6nO8H : 2
+F7oij85l : 2
+FDl : 2
+FN5gMWlCz : 2
+FT : 2
+FVG : 2
+FbG9DZWRe : 2
+FbynT : 2
+FiZ54 : 2
+Fl8 : 2
+FpW54Z4 : 2
+FsN : 2
+G : 2
+G2Rp : 2
+GB : 2
+GH3G : 2
+GL : 2
+GLAJtUUfR : 2
+GQ : 2
+GclYnV : 2
+Ggt : 2
+GsI1PrVku : 2
+GwQr : 2
+Gzrqqw5MH : 2
+H : 2
+H0Pbx04aw : 2
+H22F5 : 2
+H6NCtlGbS : 2
+HKTKh3 : 2
+HKZtz : 2
+HNieBAHTw : 2
+HQX : 2
+HaRJRovW : 2
+Hadf : 2
+HevD0fg : 2
+HfDR : 2
+HhgS6D : 2
+HwLkbx6I : 2
+I : 4
+I3IQl : 2
+IG : 2
+IHcwSecQE : 2
+IP : 2
+IQ : 2
+IgsEBwD : 2
+IlvyCZ : 2
+IxvgndJ : 2
+IzJ : 2
+J : 2
+J0ChSd : 2
+JAWcF5 : 2
+JGgFYAhP : 2
+JH93IYB : 2
+JIeU598e : 2
+JIyKFl : 2
+JQl : 2
+JQwkVn : 2
+JS : 2
+JiUwU9 : 2
+JpgHJYTrW : 2
+JqPiNBI4a : 2
+K2aq : 2
+KDXK : 2
+KKquoaE2 : 2
+Ki92Ws4 : 2
+KueGwa6mV : 2
+L : 4
+L1U35 : 2
+L7ChFi : 2
+LDjLIpv : 2
+LJHC : 2
+LK0e1z : 2
+LNE7D5 : 2
+Li : 2
+Llu3 : 2
+M : 4
+M2ghs1z : 2
+M59DRPvq : 2
+MEPyigs3R : 2
+MG : 2
+MIE1wg57 : 2
+MT : 2
+Mc3esm : 2
+MdB9LD3 : 2
+MdQgS : 2
+Mhw9sjRs : 2
+Mq1vinW : 2
+Mqb9 : 2
+Mvq : 2
+Mxd0 : 2
+N3 : 2
+NHoidY : 2
+NHrdYsrj : 2
+NJwZsndn : 2
+Na8CS : 2
+NjRG : 2
+NmPWhpQkL : 2
+NnyWTpi : 2
+Nq6NBrnI2 : 2
+NwksMjO : 2
+O7Wzobd : 2
+OD : 2
+OL : 2
+ONQvuOI : 2
+OeiYw4 : 2
+OfXWsU : 2
+Ol4csI9Ph : 2
+OlOTcEZ6 : 2
+OlYPun : 2
+OmXek8 : 2
+Oxw : 2
+P : 2
+P1E : 2
+P2UDmS : 2
+P5j : 2
+P9mv6x1Cw : 2
+PB0TxnkWr : 2
+PHNV : 2
+PVzxlFrXL : 2
+PZ8C : 2
+Ptpiu : 2
+Pxpm3Mbu : 2
+Q : 2
+Q0E5NqAQb : 2
+Q58MR2b4 : 2
+Q5mVw : 2
+Q9 : 2
+QDMs9C7 : 2
+QemAtXw : 2
+QjSt5B : 2
+QrSU0BA4N : 2
+QyGBDsb : 2
+R2 : 2
+R3 : 2
+R3W4Zw : 2
+R5r : 2
+R65G0 : 2
+R9V3Fe : 2
+RLgA : 2
+RSqxQ2SsK : 2
+RTkiX13lR : 2
+RxLtH9dn : 2
+S : 2
+S87 : 2
+SLLuQ : 2
+SN : 2
+SN7F6l : 2
+SPSQM : 2
+She5l : 2
+Smmxq8 : 2
+Sw3yqqw : 2
+T : 2
+T4aFbE : 2
+T7s : 2
+TcX66oCsr : 2
+TdoDK : 2
+TeX9KLc0A : 2
+ThUNl8 : 2
+TzZ : 2
+U : 4
+UCzWUcir : 2
+UGYGlbyq : 2
+UXDCdlJyb : 2
+UcR : 2
+Ukz7 : 2
+UotjMA : 2
+Uvd : 2
+V : 8
+VDcEL : 2
+VN : 2
+VTmS : 2
+Vdx : 2
+W : 4
+WDB5aMCly : 2
+WJT21 : 2
+WP : 2
+WRGX : 2
+WdEN : 2
+WftNIjR : 2
+Ws : 2
+X : 2
+XE : 2
+XOa5LnIM : 2
+XXqqvkC : 2
+XYR : 2
+XZ : 2
+Y : 6
+YGlEWhb : 2
+YJHi0L2 : 2
+YL : 2
+YQoCSb : 2
+YbKnb69ot : 2
+YdZ : 2
+Yk : 2
+YvU61HP : 2
+YxEF : 2
+Z : 4
+Z8KTx : 2
+ZKXI3 : 2
+ZMD7DcLX3 : 2
+ZNNu : 2
+ZNVQ : 2
+ZRGMsf : 2
+ZSrKXVPTy : 2
+ZiQgInP : 2
+Zlvs4pI : 2
+ZyuWLnM : 2
+a : 4
+aQyUuE : 2
+aZa : 2
+amCCSQ7GX : 2
+av4nOM : 2
+avrIpgSc : 2
+b : 2
+b8raOrbyZ : 2
+bAhz : 2
+bECAL : 2
+bMF : 2
+bNdi : 2
+beyqkhfcw : 2
+bfYJiDWt4 : 2
+bnjS : 2
+bvFs7 : 2
+bvj4a : 2
+c : 2
+c3LH844z4 : 2
+c9JDg58s : 2
+cB : 2
+cIo : 2
+cJ : 2
+ccsWLVH9 : 2
+cfx5e8DiT : 2
+cgigpSfrD : 2
+cq6FWL : 2
+cv1ghCYqK : 2
+cyhZYrYS : 2
+d : 8
+dHgd5 : 2
+dIV4H1Z : 2
+dMt : 2
+dZ5T : 2
+da8ocnoo : 2
+drWRGlol : 2
+dvi : 2
+e : 2
+e
+ : 2
+e0Jrg8 : 2
+e5UQnxpBn : 2
+e6Mu : 2
+eKP : 2
+eKs : 2
+eZWmMF : 2
+ei : 2
+ekpP9vf : 2
+erIBDPRr : 2
+f : 6
+f2p7BKh : 2
+f3Em : 2
+f71i : 2
+f80 : 2
+fA : 2
+fB7PK3Zzm : 2
+fDAQ8Gw : 2
+fIwhq : 2
+fUFUz : 2
+fba7Qpif1 : 2
+fkVe : 2
+fnKlLht : 2
+fqMyyYfB : 2
+g4 : 2
+gJ8 : 2
+gQ9 : 2
+gd : 2
+gfTqKG : 2
+gi : 2
+gi9r : 2
+glHC5qt : 2
+grFKJCcGU : 2
+grbVvHLvI : 2
+gtMpm : 2
+gy0v : 2
+h : 2
+h1CBmksp : 2
+h2aK : 2
+hGwR : 2
+hPLyLupY : 2
+hQhaH : 2
+hYL : 2
+hyCCUYmy : 2
+i : 4
+i0SGwNWY : 2
+i4jLh : 2
+i5M : 2
+i8pKQm : 2
+i9 : 2
+iNpf : 2
+iURC043 : 2
+iZSkZfoED : 2
+j : 4
+j6 : 2
+jF0oouIM : 2
+jG7lxMwg5 : 2
+jJf4 : 2
+jRO27G : 2
+jk9N : 2
+jl : 2
+jrptCQD : 2
+jz : 2
+k : 2
+k3P8Jp : 2
+k5eFBrL : 2
+k73muQhkc : 2
+kJz : 2
+kTioIz : 2
+kV19vtd7 : 2
+kc4 : 2
+kdqql : 2
+kg : 2
+kl3STfSW4 : 2
+l4r8Y7dw : 2
+lG6rbVtCX : 2
+lVwS : 2
+lXw : 2
+lYkpiuPM : 2
+lamUI5 : 2
+lqc4M3tt : 2
+lx8Xdv : 2
+m : 8
+m5Qn92F : 2
+mFycxNlT : 2
+mSXYMc : 2
+mdzCYzyk : 2
+mg84T6 : 2
+miQVv : 2
+mxCWYy : 2
+n : 6
+n5Cjm : 2
+n5u : 2
+nDLSWV3bv : 2
+nGGiZ : 2
+nPrGH2oO : 2
+nQ6kh : 2
+nXgZ : 2
+nZRD : 2
+nc2h6 : 2
+ncC : 2
+ngQ3j : 2
+nkCq : 2
+nmx72 : 2
+nrs : 2
+nuXQ1Y8HW : 2
+nwGY : 2
+nzgWzF : 2
+o : 2
+o3 : 2
+oC : 2
+oC4N33 : 2
+oDK3v : 2
+oKYZbYjI0 : 2
+oS9Xbs : 2
+ocyrR80 : 2
+ohUtc3v : 2
+ojp : 2
+p : 6
+p425I : 2
+p89Di5Bmf : 2
+pAaI : 2
+pNFYzB8 : 2
+pTr19oHs1 : 2
+pnPjYsU00 : 2
+q : 2
+q0c : 2
+q4hq : 2
+q8i7 : 2
+q9UatPR1 : 2
+qF3z2t : 2
+qHqdCQ0 : 2
+qIjJz : 2
+qJ3hVxEj : 2
+qVacVI8m : 2
+qWeX : 2
+qWirP0DK : 2
+qX : 2
+qb2 : 2
+qgJ3 : 2
+qh69jg4 : 2
+qnRPp78E : 2
+qtDgVd8j : 2
+qtGvV0 : 2
+qvV6wwE : 2
+r : 4
+rHDIw0v4t : 2
+rJcT : 2
+rK : 2
+rRDJ : 2
+rUlTLN : 2
+rVdakdMW : 2
+raKZb : 2
+rqJ9NS5 : 2
+ruM : 2
+ryDsbzayy : 2
+s : 2
+s3gVdO : 2
+sE6jXgC : 2
+sgrYn : 2
+sn5 : 2
+supnxndJ : 2
+sz3aYh1mP : 2
+t042r1 : 2
+t4rPe5RdR : 2
+t6sYJnF : 2
+t8b : 2
+tLB1 : 2
+tQpkG : 2
+tbw1I12ck : 2
+tobq : 2
+tyS3Qr : 2
+u0RhJ : 2
+uM7nAmP4z : 2
+uX : 2
+uY2eYqL : 2
+uhcjxU7y : 2
+ulUbAva : 2
+un4cDz : 2
+unw : 2
+utrbRC4pM : 2
+uujtD : 2
+v : 6
+v28t47GQ : 2
+v9Yins : 2
+vJ2q9RjTZ : 2
+vN : 2
+vRf8p2lX : 2
+vSv3Vwr : 2
+vXV8 : 2
+vgJtASRQI : 2
+vjaw078 : 2
+vmUReKA8J : 2
+vpeqfu : 2
+vq : 2
+wM36YpqOc : 2
+wSNc : 2
+wbO : 2
+wrFn : 2
+x : 6
+x0mBx : 2
+xF4ZZDhqN : 2
+xP85nFMjz : 2
+xb : 2
+xeIy4s : 2
+xwq4tp8 : 2
+y2 : 2
+y2Oph8Yi : 2
+yDUS : 2
+yIjDPy3Qu : 2
+yU9a : 2
+yVj0IPB : 2
+yg9KiB : 2
+yq : 2
+yw2jds : 2
+ywR : 2
+z : 2
+z2ff5nVh : 2
+zAedLT : 2
+zSpH4 : 2
+zWIe1Fs : 2
+zZFyd : 2
+zaC1wjRB4 : 2
+zeITNNe : 2
+zfzL : 2
+zm1BAH8G : 2
+zojp : 2
+zuuaYTrGe : 2
+zxlYvKWrO : 2

@@ -55,6 +55,16 @@ namespace twister {
                 key_values[u_key].push_back(val_);
             }
         }
+
+		void merge_reduce_input(const reduce_input& reduce_input_) {
+			std::map<const key*, std::vector<const value*>>::const_iterator it = reduce_input_.key_values.begin();
+
+			for (; it != reduce_input_.key_values.end(); it++) {
+				for (const value* val : it->second) {
+					add_key_value(it->first, val);
+				}
+			}
+		}
         
         void load(in_archive& in_ar) {
             in_ar >> (int&)msg_type;

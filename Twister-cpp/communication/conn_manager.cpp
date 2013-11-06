@@ -12,14 +12,30 @@
 #include <Twister-cpp/message/ack_mapper_msg.h>
 #include <boost/foreach.hpp>
 #include <cstdlib>
+#include <fstream>
 
 namespace twister {
     conn_manager::conn_manager() {
-        ip_list.push_back("127.0.0.1");
         //ip_list.push_back("127.0.0.1");
-        daemon_map[0] = "127.0.0.1";
+        //ip_list.push_back("127.0.0.1");
+        //daemon_map[0] = "127.0.0.1";
         //daemon_map[1] = "127.0.0.1";
-        num_of_managed_daemon = 1;
+        num_of_managed_daemon = 0;
+		const char* twister_home = getenv("TWISTER_HOME");
+		if (twister_home == NULL) {
+			std::cerr << "please set TWISTER_HOME properly" << std::endl;
+			exit(-1);
+		}
+		std::string node_file(twister_home);
+		node_file += "/bin/nodes";
+
+		std::ifstream node_list(node_file, std::ifstream::in);
+		std::string ip = "";
+		while (getline(node_list, ip)) {
+			ip_list.push_back(ip);
+			daemon_map[num_of_managed_daemon++] = ip;
+		}
+		node_list.close();
     }
     
     conn_manager::~conn_manager() {
@@ -55,9 +71,10 @@ namespace twister {
             tcp::resolver resolver(io_service);
             std::vector<tcp::socket*> socket_vec;
             
+			int daemon_id = 0;
             BOOST_FOREACH(std::string ip, ip_list) {
                 //std::cout << ip << std::endl;
-                tcp::resolver::query query(ip, "12500");
+                tcp::resolver::query query(ip, std::to_string(12500 + daemon_id++));
                 tcp::resolver::iterator endpointer = resolver.resolve(query);
                 tcp::socket *socket = new tcp::socket(io_service);
                 boost::asio::connect(*socket, endpointer);

@@ -11,10 +11,10 @@
 
 #include <iostream>
 #include <map>
-#include "gather.h"
-#include "string_key.h"
-#include "int_value.h"
-#include "job_config.h"
+#include "Twister-cpp/worker/gather.h"
+#include "Twister-cpp/types/string_key.h"
+#include "Twister-cpp/types/int_value.h"
+#include "Twister-cpp/config/job_config.h"
 
 
 class word_count_gather : public twister::gather {

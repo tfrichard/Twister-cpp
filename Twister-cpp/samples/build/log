@@ -1,0 +1,45 @@
+/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -H/ccs/home/feiteng/twistercpp/Twister-cpp/samples -B/ccs/home/feiteng/twistercpp/Twister-cpp/samples/build --check-build-system CMakeFiles/Makefile.cmake 0
+/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -E cmake_progress_start /ccs/home/feiteng/twistercpp/Twister-cpp/samples/build/CMakeFiles /ccs/home/feiteng/twistercpp/Twister-cpp/samples/build/CMakeFiles/progress.marks
+make -f CMakeFiles/Makefile2 all
+make[1]: Entering directory `/autofs/na3_home1/feiteng/twistercpp/Twister-cpp/samples/build'
+make -f CMakeFiles/tcc_wordcount.dir/build.make CMakeFiles/tcc_wordcount.dir/depend
+make[2]: Entering directory `/autofs/na3_home1/feiteng/twistercpp/Twister-cpp/samples/build'
+cd /ccs/home/feiteng/twistercpp/Twister-cpp/samples/build && /autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -E cmake_depends "Unix Makefiles" /ccs/home/feiteng/twistercpp/Twister-cpp/samples /ccs/home/feiteng/twistercpp/Twister-cpp/samples /ccs/home/feiteng/twistercpp/Twister-cpp/samples/build /ccs/home/feiteng/twistercpp/Twister-cpp/samples/build /ccs/home/feiteng/twistercpp/Twister-cpp/samples/build/CMakeFiles/tcc_wordcount.dir/DependInfo.cmake --color=
+make[2]: Leaving directory `/autofs/na3_home1/feiteng/twistercpp/Twister-cpp/samples/build'
+make -f CMakeFiles/tcc_wordcount.dir/build.make CMakeFiles/tcc_wordcount.dir/build
+make[2]: Entering directory `/autofs/na3_home1/feiteng/twistercpp/Twister-cpp/samples/build'
+Linking CXX executable tcc_wordcount
+/autofs/na4_sw/sith/cmake/2.8.10.2/rhel6_gnu4.4.6/bin/cmake -E cmake_link_script CMakeFiles/tcc_wordcount.dir/link.txt --verbose=1
+/usr/lib64/ccache/c++   -O0 -Wno-attributes -march=x86-64 -Wall -g -std=c++11 -Wno-conversion-null    CMakeFiles/tcc_wordcount.dir/main.cpp.o CMakeFiles/tcc_wordcount.dir/word_count_gather.cpp.o CMakeFiles/tcc_wordcount.dir/word_count_mapper.cpp.o CMakeFiles/tcc_wordcount.dir/word_count_reducer.cpp.o  -o tcc_wordcount  -L/ccs/home/feiteng/boost/lib  -L/ccs/home/feiteng/twistercpp/lib -rdynamic 
+CMakeFiles/tcc_wordcount.dir/main.cpp.o: In function `main':
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/main.cpp:71: undefined reference to `twister::job_config::getInstance(std::string const&)'
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/main.cpp:82: undefined reference to `twister::driver::driver(twister::job_config*)'
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/main.cpp:85: undefined reference to `twister::driver::runMapReduceJob(twister::value*)'
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/main.cpp:96: undefined reference to `twister::driver::~driver()'
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/main.cpp:96: undefined reference to `twister::driver::~driver()'
+CMakeFiles/tcc_wordcount.dir/main.cpp.o: In function `__static_initialization_and_destruction_0':
+/ccs/home/feiteng/boost/include/boost/system/error_code.hpp:222: undefined reference to `boost::system::generic_category()'
+/ccs/home/feiteng/boost/include/boost/system/error_code.hpp:223: undefined reference to `boost::system::generic_category()'
+/ccs/home/feiteng/boost/include/boost/system/error_code.hpp:224: undefined reference to `boost::system::system_category()'
+CMakeFiles/tcc_wordcount.dir/main.cpp.o: In function `boost::asio::error::get_system_category()':
+/ccs/home/feiteng/boost/include/boost/asio/error.hpp:216: undefined reference to `boost::system::system_category()'
+CMakeFiles/tcc_wordcount.dir/main.cpp.o: In function `twister::string_value::load(twister::in_archive&)':
+/ccs/home/feiteng/twistercpp/Twister-cpp/types/string_value.h:26: undefined reference to `twister::operator>>(twister::in_archive&, std::string&)'
+CMakeFiles/tcc_wordcount.dir/main.cpp.o: In function `twister::string_value::save(twister::out_archive&) const':
+/ccs/home/feiteng/twistercpp/Twister-cpp/types/string_value.h:30: undefined reference to `twister::operator<<(twister::out_archive&, std::string const&)'
+CMakeFiles/tcc_wordcount.dir/word_count_mapper.cpp.o: In function `word_count_mapper::map(twister::map_output_collector*, twister::key const&, twister::value const&)':
+/ccs/home/feiteng/twistercpp/Twister-cpp/samples/word_count_mapper.cpp:33: undefined reference to `twister::map_output_collector::collect(twister::key const*, twister::value const*)'
+CMakeFiles/tcc_wordcount.dir/word_count_mapper.cpp.o: In function `twister::string_key::load(twister::in_archive&)':
+/ccs/home/feiteng/twistercpp/Twister-cpp/types/string_key.h:28: undefined reference to `twister::operator>>(twister::in_archive&, std::string&)'
+CMakeFiles/tcc_wordcount.dir/word_count_mapper.cpp.o: In function `twister::string_key::save(twister::out_archive&) const':
+/ccs/home/feiteng/twistercpp/Twister-cpp/types/string_key.h:32: undefined reference to `twister::operator<<(twister::out_archive&, std::string const&)'
+CMakeFiles/tcc_wordcount.dir/word_count_mapper.cpp.o: In function `twister::int_value::load(twister::in_archive&)':
+/ccs/home/feiteng/twistercpp/Twister-cpp/types/int_value.h:25: undefined reference to `twister::operator>>(twister::in_archive&, int&)'
+CMakeFiles/tcc_wordcount.dir/word_count_mapper.cpp.o: In function `twister::int_value::save(twister::out_archive&) const':
+/ccs/home/feiteng/twistercpp/Twister-cpp/types/int_value.h:29: undefined reference to `twister::operator<<(twister::out_archive&, int)'
+collect2: error: ld returned 1 exit status
+make[2]: *** [tcc_wordcount] Error 1
+make[2]: Leaving directory `/autofs/na3_home1/feiteng/twistercpp/Twister-cpp/samples/build'
+make[1]: *** [CMakeFiles/tcc_wordcount.dir/all] Error 2
+make[1]: Leaving directory `/autofs/na3_home1/feiteng/twistercpp/Twister-cpp/samples/build'
+make: *** [all] Error 2

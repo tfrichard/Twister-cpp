@@ -10,6 +10,7 @@
 #define __Twister_cpp__out_archive__
 
 #include <iostream>
+#include <cstring>
 
 namespace twister {
     class message;
